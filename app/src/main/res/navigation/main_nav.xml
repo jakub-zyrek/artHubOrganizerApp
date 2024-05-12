@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.arthuborganizer.fragments.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.arthuborganizer.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_loginFragment_to_signUpWorkerFragment"
+            app:destination="@id/signUpWorkerFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/adminMenuFragment"
+        android:name="com.example.arthuborganizer.fragments.AdminMenuFragment"
+        android:label="fragment_admin_menu"
+        tools:layout="@layout/fragment_admin_menu" >
+        <action
+            android:id="@+id/action_adminMenuFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_adminMenuFragment_to_addOfficeWorkerFragment"
+            app:destination="@id/addOfficeWorkerFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_adminMenuFragment_to_changeOfficeWorkersFragment"
+            app:destination="@id/changeOfficeWorkersFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_addWorkerFragment"
+            app:destination="@id/addWorkerFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_changeWorkersFragment"
+            app:destination="@id/changeWorkersFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_addChangeRoomsFragment"
+            app:destination="@id/addChangeRoomsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_addClassFragment"
+            app:destination="@id/addClassFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_changeEventsFragment"
+            app:destination="@id/changeEventsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_changeClassesFragment"
+            app:destination="@id/changeClassesFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_adminMenuFragment_to_changeStudentsFragment"
+            app:destination="@id/changeStudentsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/officeWorkerMenuFragment"
+        android:name="com.example.arthuborganizer.fragments.OfficeWorkerMenuFragment"
+        android:label="OfficeWorkerMenuFragment"
+        tools:layout="@layout/fragment_office_worker_menu">
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_addEventFragment"
+            app:destination="@id/addEventFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_addClassFragment"
+            app:destination="@id/addClassFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_changeClassesFragment"
+            app:destination="@id/changeClassesFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_changeEventsFragment"
+            app:destination="@id/changeEventsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_checkTicketFragment"
+            app:destination="@id/checkTicketFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_sellTicketsFragment"
+            app:destination="@id/sellTicketsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_changeStudentsFragment"
+            app:destination="@id/changeStudentsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/workerMenuFragment"
+        android:name="com.example.arthuborganizer.fragments.WorkerMenuFragment"
+        android:label="WorkerMenuFragment"
+        tools:layout="@layout/fragment_worker_menu">
+        <action
+            android:id="@+id/action_workerMenuFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_workerMenuFragment_to_checkFrequencyFragment"
+            app:destination="@id/checkFrequencyFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_workerMenuFragment_to_changeStudentsFragment"
+            app:destination="@id/changeStudentsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/addOfficeWorkerFragment"
+        android:name="com.example.arthuborganizer.fragments.AddOfficeWorkerFragment"
+        android:label="fragment_add_office_worker"
+        tools:layout="@layout/fragment_add_office_worker" >
+        <action
+            android:id="@+id/action_addOfficeWorkerFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="com.example.arthuborganizer.fragments.AddEventFragment"
+        android:label="fragment_add_event"
+        tools:layout="@layout/fragment_add_event" >
+        <action
+            android:id="@+id/action_addEventFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_addEventFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/addClassFragment"
+        android:name="com.example.arthuborganizer.fragments.AddClassFragment"
+        android:label="fragment_add_class"
+        tools:layout="@layout/fragment_add_class" >
+        <action
+            android:id="@+id/action_addClassFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_addClassFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/addWorkerFragment"
+        android:name="com.example.arthuborganizer.fragments.AddWorkerFragment"
+        android:label="fragment_add_worker"
+        tools:layout="@layout/fragment_add_worker" >
+        <action
+            android:id="@+id/action_addWorkerFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeEventsFragment"
+        android:name="com.example.arthuborganizer.fragments.ChangeEventsFragment"
+        android:label="fragment_change_events"
+        tools:layout="@layout/fragment_change_events" >
+        <action
+            android:id="@+id/action_changeEventsFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeEventsFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeEventsFragment_to_editEventFragment"
+            app:destination="@id/editEventFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeOfficeWorkersFragment"
+        android:name="com.example.arthuborganizer.fragments.ChangeOfficeWorkersFragment"
+        android:label="fragment_change_office_workers"
+        tools:layout="@layout/fragment_change_office_workers" >
+        <action
+            android:id="@+id/action_changeOfficeWorkersFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeOfficeWorkersFragment_to_editOfficeWorkerFragment"
+            app:destination="@id/editOfficeWorkerFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeWorkersFragment"
+        android:name="com.example.arthuborganizer.fragments.ChangeWorkersFragment"
+        android:label="fragment_change_workers"
+        tools:layout="@layout/fragment_change_workers" >
+        <action
+            android:id="@+id/action_changeWorkersFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeWorkersFragment_to_editWorkerFragment"
+            app:destination="@id/editWorkerFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/editEventFragment"
+        android:name="com.example.arthuborganizer.fragments.EditEventFragment"
+        android:label="fragment_edit_event"
+        tools:layout="@layout/fragment_edit_event" >
+        <action
+            android:id="@+id/action_editEventFragment_to_changeEventsFragment"
+            app:destination="@id/changeEventsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/editOfficeWorkerFragment"
+        android:name="com.example.arthuborganizer.fragments.EditOfficeWorkerFragment"
+        android:label="fragment_edit_office_worker"
+        tools:layout="@layout/fragment_edit_office_worker" >
+        <action
+            android:id="@+id/action_editOfficeWorkerFragment_to_changeOfficeWorkersFragment"
+            app:destination="@id/changeOfficeWorkersFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/editWorkerFragment"
+        android:name="com.example.arthuborganizer.fragments.EditWorkerFragment"
+        android:label="fragment_edit_worker"
+        tools:layout="@layout/fragment_edit_worker" >
+        <action
+            android:id="@+id/action_editWorkerFragment_to_changeWorkersFragment"
+            app:destination="@id/changeWorkersFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.arthuborganizer.fragments.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_startFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_startFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_startFragment_to_workerMenuFragment"
+            app:destination="@id/workerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/signUpWorkerFragment"
+        android:name="com.example.arthuborganizer.fragments.SignUpWorkerFragment"
+        android:label="fragment_sign_up_worker"
+        tools:layout="@layout/fragment_sign_up_worker" >
+        <action
+            android:id="@+id/action_signUpWorkerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_signUpWorkerFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/addChangeRoomsFragment"
+        android:name="com.example.arthuborganizer.fragments.AddChangeRoomsFragment"
+        android:label="fragment_add_change_rooms"
+        tools:layout="@layout/fragment_add_change_rooms" >
+        <action
+            android:id="@+id/action_addChangeRoomsFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="com.example.arthuborganizer.fragments.AddStudentFragment"
+        android:label="fragment_add_student"
+        tools:layout="@layout/fragment_add_student" >
+        <action
+            android:id="@+id/action_addStudentFragment_to_changeStudentsFragment"
+            app:destination="@id/changeStudentsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeClassesFragment"
+        android:name="com.example.arthuborganizer.fragments.ChangeClassesFragment"
+        android:label="fragment_change_classes"
+        tools:layout="@layout/fragment_change_classes" >
+        <action
+            android:id="@+id/action_changeClassesFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeClassesFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeClassesFragment_to_editClassFragment"
+            app:destination="@id/editClassFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeStudentsFragment"
+        android:name="com.example.arthuborganizer.fragments.ChangeStudentsFragment"
+        android:label="fragment_change_students"
+        tools:layout="@layout/fragment_change_students" >
+        <action
+            android:id="@+id/action_changeStudentsFragment_to_adminMenuFragment"
+            app:destination="@id/adminMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeStudentsFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeStudentsFragment_to_addStudentFragment"
+            app:destination="@id/addStudentFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeStudentsFragment_to_editStudentFragment"
+            app:destination="@id/editStudentFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeStudentsClassFragment"
+        android:name="com.example.arthuborganizer.fragments.ChangeStudentsClassFragment"
+        android:label="fragment_change_students_class"
+        tools:layout="@layout/fragment_change_students_class" >
+        <action
+            android:id="@+id/action_changeStudentsClassFragment_to_editClassFragment"
+            app:destination="@id/editClassFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeStudentsClassFragment_to_workerMenuFragment"
+            app:destination="@id/workerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeStudentsClassFragment_to_editStudentFragment"
+            app:destination="@id/editStudentFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/editStudentFragment"
+        android:name="com.example.arthuborganizer.fragments.EditStudentFragment"
+        android:label="fragment_edit_student"
+        tools:layout="@layout/fragment_edit_student" >
+        <action
+            android:id="@+id/action_editStudentFragment_to_changeStudentsFragment"
+            app:destination="@id/changeStudentsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/editClassFragment"
+        android:name="com.example.arthuborganizer.fragments.EditClassFragment"
+        android:label="fragment_edit_class"
+        tools:layout="@layout/fragment_edit_class" >
+        <action
+            android:id="@+id/action_editClassFragment_to_changeClassesFragment"
+            app:destination="@id/changeClassesFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_editClassFragment_to_changeStudentsClassFragment"
+            app:destination="@id/changeStudentsClassFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkFrequencyFragment"
+        android:name="com.example.arthuborganizer.fragments.CheckFrequencyFragment"
+        android:label="fragment_check_frequency"
+        tools:layout="@layout/fragment_check_frequency" >
+        <action
+            android:id="@+id/action_checkFrequencyFragment_to_workerMenuFragment"
+            app:destination="@id/workerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_checkFrequencyFragment_to_frequencyFragment"
+            app:destination="@id/frequencyFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkTicketFragment"
+        android:name="com.example.arthuborganizer.fragments.CheckTicketFragment"
+        android:label="fragment_check_ticket"
+        tools:layout="@layout/fragment_check_ticket" >
+        <action
+            android:id="@+id/action_checkTicketFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_checkTicketFragment_to_ticketControlFragment"
+            app:destination="@id/ticketControlFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/frequencyFragment"
+        android:name="com.example.arthuborganizer.fragments.FrequencyFragment"
+        android:label="fragment_frequency"
+        tools:layout="@layout/fragment_frequency" >
+        <action
+            android:id="@+id/action_frequencyFragment_to_checkFrequencyFragment"
+            app:destination="@id/checkFrequencyFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/checkFrequencyFragment"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellTicketFragment"
+        android:name="com.example.arthuborganizer.fragments.SellTicketFragment"
+        android:label="fragment_sell_ticket"
+        tools:layout="@layout/fragment_sell_ticket" >
+        <action
+            android:id="@+id/action_sellTicketFragment_to_sellTicketsFragment"
+            app:destination="@id/sellTicketsFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/sellTicketsFragment"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/sellTicketsFragment"
+        android:name="com.example.arthuborganizer.fragments.SellTicketsFragment"
+        android:label="fragment_sell_tickets"
+        tools:layout="@layout/fragment_sell_tickets" >
+        <action
+            android:id="@+id/action_sellTicketsFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popUpTo="@id/officeWorkerMenuFragment"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketControlFragment"
+        android:name="com.example.arthuborganizer.fragments.TicketControlFragment"
+        android:label="fragment_ticket_control"
+        tools:layout="@layout/fragment_ticket_control" >
+        <action
+            android:id="@+id/action_ticketControlFragment_to_checkTicketFragment"
+            app:destination="@id/checkTicketFragment"
+            app:popUpTo="@id/checkTicketFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+</navigation>
