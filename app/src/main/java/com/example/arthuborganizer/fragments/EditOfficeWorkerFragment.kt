@@ -93,5 +93,17 @@ class EditOfficeWorkerFragment : Fragment() {
 
             Toast.makeText(context, getString(R.string.ToastEditOfficeWorker), Toast.LENGTH_SHORT).show()
         }
+
+        binding.btnDeleteEditOfficeWorkerFragment.setOnClickListener {
+            refOfficeWorker.removeValue()
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        navControl.navigate(R.id.action_editOfficeWorkerFragment_to_changeOfficeWorkersFragment)
+                        Toast.makeText(context, getString(R.string.ToastDeleteWorker), Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
     }
 }

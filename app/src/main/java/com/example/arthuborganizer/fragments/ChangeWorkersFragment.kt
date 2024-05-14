@@ -75,7 +75,7 @@ class ChangeWorkersFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 mList.clear()
                 for (temp in snapshot.children) {
-                    if (temp.child("role").value == "worker" && sharedViewModel.idHouse == temp.child("id").value) {
+                    if (temp.child("role").value == "worker" && sharedViewModel.idHouse == temp.child("id").value && temp.child("password").value.toString() == "null") {
                         mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), temp.child("surname").value.toString()))
                     }
                 }

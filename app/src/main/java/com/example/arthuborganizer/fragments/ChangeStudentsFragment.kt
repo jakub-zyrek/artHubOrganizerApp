@@ -77,7 +77,9 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 mList.clear()
                 for (temp in snapshot.children) {
-                    mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), ""))
+                    if (temp.child("email").value.toString() != "null") {
+                        mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), ""))
+                    }
                 }
 
                 adapter.notifyDataSetChanged()

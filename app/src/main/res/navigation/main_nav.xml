@@ -429,6 +429,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out"/>
+        <action
+            android:id="@+id/action_startFragment_to_noneCultureHouseFragment"
+            app:destination="@id/noneCultureHouseFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/signUpWorkerFragment"
@@ -688,6 +695,19 @@
             android:id="@+id/action_ticketControlFragment_to_checkTicketFragment"
             app:destination="@id/checkTicketFragment"
             app:popUpTo="@id/checkTicketFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/noneCultureHouseFragment"
+        android:name="com.example.arthuborganizer.fragments.NoneCultureHouseFragment"
+        android:label="fragment_none_culture_house"
+        tools:layout="@layout/fragment_none_culture_house" >
+        <action
+            android:id="@+id/action_noneCultureHouseFragment_to_startFragment"
+            app:destination="@id/startFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"

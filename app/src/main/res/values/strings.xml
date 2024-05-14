@@ -139,6 +139,16 @@
     <string name="ToastEditEvent">Zmieniono wydarzenie</string>
     <string name="ToastDeleteEvent">Usunięto wydarzenie</string>
     <string name="ToastActiveAccount">Aktywowano konto</string>
+    <string name="activateAccountHelperText">Jeżeli kiedyś już miałeś/aś konto to zaloguj się za pomocą starego hasła</string>
+    <string name="ToastResetPasswordActivateAccout">Błędne hasło. Musisz podać hasło z którym było zakładane konto. Na maila wysłano link do resetu hasła</string>
+    <string name="ToastDeleteWorker">Usunięto pracownika. Użytkownika dalej może logować się na swoje konto natomiast nie ma już dostępu do ośrodka</string>
+    <string name="lackOfCultureHouseLabel">Brak przypisanego ośrodka kultury</string>
+    <string name="ToastDeleteClass">Usunięto zajęcia</string>
+    <string name="ToastDeleteWorkerError">Usuń pracownika ze wszystkich zajęć</string>
+    <string name="navBarEditStudent">Edytowanie uczestnika</string>
+    <string name="ToastChangeStudent">Zmieniono uczestnika</string>
+    <string name="ToastDeleteStudentFromClasses">Usunięto uczestnika ze wszystkich zajęć</string>
+    <string name="ToastDeleteStudent">Usunięto uczestnika (poza imieniem i nazwiskiem)</string>
 
 
 </resources>

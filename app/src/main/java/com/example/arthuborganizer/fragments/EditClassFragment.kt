@@ -1,5 +1,6 @@
 package com.example.arthuborganizer.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,7 +25,7 @@ class EditClassFragment : Fragment() {
     private val sharedViewModel: ViewModelVariables by activityViewModels()
     private lateinit var navControl : NavController
     private lateinit var database : FirebaseDatabase
-    private lateinit var refClasses : DatabaseReference
+    private lateinit var refClass: DatabaseReference
     private lateinit var refRooms : DatabaseReference
     private lateinit var refWorkers : DatabaseReference
     private lateinit var selectedWorker : String
@@ -54,13 +55,23 @@ class EditClassFragment : Fragment() {
 
         navControl = Navigation.findNavController(view)
         database = FirebaseDatabase.getInstance()
-        refClasses = database.getReference(sharedViewModel.idHouse).child("classes")
+        refClass = database.getReference(sharedViewModel.idHouse).child("classes").child(sharedViewModel.id)
         refRooms = database.getReference(sharedViewModel.idHouse).child("rooms")
         refWorkers = database.getReference("users")
 
-        setRoomsAdapter()
+        refClass.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                binding.etNameEditClassFragment.setText(snapshot.child("name").value.toString())
 
-        setWorkersAdapter()
+                setRoomsAdapter(snapshot.child("room").value.toString())
+                setWorkersAdapter(snapshot.child("worker").value.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+            }
+
+        })
 
         binding.editEditClassFragment.setOnClickListener {
             if (
@@ -70,28 +81,54 @@ class EditClassFragment : Fragment() {
             ) {
                 Toast.makeText(context, getString(R.string.ToastFillDetails), Toast.LENGTH_SHORT).show()
             } else {
-                refClasses.child(sharedViewModel.id).child("name").setValue(binding.etNameEditClassFragment.text.toString())
-                refClasses.child(sharedViewModel.id).child("room").setValue(selectedRoom)
-                refClasses.child(sharedViewModel.id).child("worker").setValue(selectedWorker)
+                refClass.child("name").setValue(binding.etNameEditClassFragment.text.toString())
+                refClass.child("room").setValue(selectedRoom)
+                refClass.child("worker").setValue(selectedWorker)
 
                 Toast.makeText(context, getString(R.string.ToastEditClass), Toast.LENGTH_SHORT).show()
                 navControl.navigate(R.id.action_editClassFragment_to_changeClassesFragment)
             }
         }
 
+        binding.deleteEditClassFragment.setOnClickListener {
+            refClass.removeValue()
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(context, getString(R.string.ToastDeleteClass), Toast.LENGTH_SHORT).show()
+                        navControl.navigate(R.id.action_editClassFragment_to_changeClassesFragment)
+                    } else {
+                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
     }
 
-    private fun setWorkersAdapter() {
+    private fun setWorkersAdapter(worker : String) {
         val workers : ArrayList<String> = arrayListOf()
         val workersId : ArrayList<String> = arrayListOf()
+        var temp = -1
 
         refWorkers.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (item in snapshot.children) {
+                    temp++
+
                     if (item.child("role").value.toString() == "worker" && item.child("id").value.toString() == sharedViewModel.idHouse) {
                         workers.add(item.child("name").value.toString() + " " + item.child("surname").value.toString())
                         workersId.add(item.key.toString())
+
+                        if (worker == item.key.toString()) {
+                            val adapterAutoCompleteRooms = ArrayAdapter(requireContext(), R.layout.spinner_item, workers)
+                            binding.autoCompleteWorkerEditClassFragment.setText(item.child("name").value.toString() + " " + item.child("surname").value.toString())
+                            binding.autoCompleteWorkerEditClassFragment.setAdapter(adapterAutoCompleteRooms)
+                            selectedWorker = item.key.toString()
+                        }
                     }
+                }
+
+                binding.autoCompleteWorkerEditClassFragment.setOnItemClickListener { _, _, position, _ ->
+                    selectedWorker = workersId[position]
                 }
             }
 
@@ -110,16 +147,29 @@ class EditClassFragment : Fragment() {
         }
     }
 
-    private fun setRoomsAdapter() {
+    private fun setRoomsAdapter(room : String) {
         val rooms : ArrayList<String> = arrayListOf()
         val roomsId : ArrayList<String> = arrayListOf()
-        selectedRoom = "null"
+        var temp = -1
 
         refRooms.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (item in snapshot.children) {
+                    temp++
+
+                    if (room == item.key.toString()) {
+                        val adapterAutoCompleteRooms = ArrayAdapter(requireContext(), R.layout.spinner_item, rooms)
+                        binding.autoCompleteRoomEditClassFragment.setText(item.value.toString())
+                        binding.autoCompleteRoomEditClassFragment.setAdapter(adapterAutoCompleteRooms)
+                        selectedRoom = item.key.toString()
+                    }
+
                     rooms.add(item.value.toString())
                     roomsId.add(item.key.toString())
+                }
+
+                binding.autoCompleteRoomEditClassFragment.setOnItemClickListener { _, _, position, _ ->
+                    selectedRoom = roomsId[position]
                 }
             }
 

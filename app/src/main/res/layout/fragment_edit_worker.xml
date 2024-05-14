@@ -89,7 +89,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/btnAddEditWorkerFragment"
+                    android:id="@+id/btnEditEditWorkerFragment"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

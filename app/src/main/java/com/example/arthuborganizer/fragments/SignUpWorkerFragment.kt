@@ -12,6 +12,7 @@ import androidx.navigation.Navigation
 import com.example.arthuborganizer.R
 import com.example.arthuborganizer.databinding.FragmentSignUpWorkerBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -55,28 +56,29 @@ class SignUpWorkerFragment : Fragment() {
                         for (childSnapshot in snapshot.children) {
                             if (binding.etLoginSignUpWorkerFragment.text.toString().trim() == childSnapshot.child("email").value) {
                                 emailInDatabase = true
+
+                                val temp = childSnapshot.value as Map<*, *>
+
                                 if (binding.etPasswordSignUpWorkerFragment.text.toString() == childSnapshot.child("password").value) {
-                                    auth.createUserWithEmailAndPassword(childSnapshot.child("email").value.toString(), childSnapshot.child("password").value.toString())
+                                    auth.createUserWithEmailAndPassword(childSnapshot.child("email").value.toString(), binding.etPasswordSignUpWorkerFragment.text.toString())
                                         .addOnCompleteListener {
                                             if (it.isSuccessful) {
-                                                Log.d("abc", childSnapshot.toString())
-
-                                                val temp = childSnapshot.value as Map<*, *>
-
                                                 myRef.child(auth.currentUser!!.uid).setValue(temp)
                                                 myRef.child(auth.currentUser!!.uid).child("password").removeValue()
                                                 myRef.child(childSnapshot.key.toString()).removeValue()
 
-
                                                 navControl.navigate(R.id.action_signUpWorkerFragment_to_startFragment)
-                                                Toast.makeText(context,
-                                                    getString(R.string.ToastActiveAccount), Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(context, getString(R.string.ToastActiveAccount), Toast.LENGTH_SHORT).show()
+                                            } else {
+                                                if (it.exception is FirebaseAuthUserCollisionException) {
+                                                    badPassword(childSnapshot, temp)
+                                                }
                                             }
                                         }
 
                                     break
                                 } else {
-                                    Toast.makeText(context, getString(R.string.ToastInvalidPassword), Toast.LENGTH_SHORT).show()
+                                    badPassword(childSnapshot, temp)
                                     break
                                 }
                             }
@@ -96,5 +98,21 @@ class SignUpWorkerFragment : Fragment() {
                 })
             }
         }
+    }
+
+    private fun badPassword(childSnapshot : DataSnapshot, temp : Map<*, *>) {
+        auth.signInWithEmailAndPassword(childSnapshot.child("email").value.toString(), binding.etPasswordSignUpWorkerFragment.text.toString())
+            .addOnCompleteListener { it1 ->
+                if (it1.isSuccessful) {
+                    myRef.child(auth.currentUser!!.uid).setValue(temp)
+                    myRef.child(auth.currentUser!!.uid).child("password").removeValue()
+                    myRef.child(childSnapshot.key.toString()).removeValue()
+
+                    navControl.navigate(R.id.action_signUpWorkerFragment_to_startFragment)
+                } else {
+                    Toast.makeText(context, getString(R.string.ToastResetPasswordActivateAccout), Toast.LENGTH_SHORT).show()
+                    auth.sendPasswordResetEmail(binding.etLoginSignUpWorkerFragment.text.toString().trim())
+                }
+            }
     }
 }

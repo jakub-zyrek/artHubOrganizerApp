@@ -13,12 +13,17 @@ import androidx.navigation.Navigation
 import com.example.arthuborganizer.R
 import com.example.arthuborganizer.databinding.FragmentEditWorkerBinding
 import com.example.arthuborganizer.model.ViewModelVariables
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class EditWorkerFragment : Fragment() {
     private lateinit var binding : FragmentEditWorkerBinding
@@ -27,6 +32,7 @@ class EditWorkerFragment : Fragment() {
     private lateinit var refWorkers : DatabaseReference
     private lateinit var navControl : NavController
     private lateinit var auth : FirebaseAuth
+    private lateinit var refClasses : DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,9 +42,7 @@ class EditWorkerFragment : Fragment() {
 
         binding.navBar.tvNavBarLabel.text = getString(R.string.navBarEditWorker)
 
-        binding.navBar.ivNavBarBack.setOnClickListener {
-            navControl.navigate(R.id.action_editWorkerFragment_to_changeWorkersFragment)
-        }
+        binding.navBar.ivNavBarBack.setOnClickListener { back() }
 
         binding.etEmailEditWorkerFragment.inputType = InputType.TYPE_NULL
 
@@ -52,6 +56,7 @@ class EditWorkerFragment : Fragment() {
         refWorkers = database.getReference("users").child(sharedViewModel.id)
         navControl = Navigation.findNavController(view)
         auth = FirebaseAuth.getInstance()
+        refClasses = database.getReference(sharedViewModel.idHouse).child("classes")
 
         refWorkers.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -66,7 +71,40 @@ class EditWorkerFragment : Fragment() {
 
         })
 
-        binding.btnAddEditWorkerFragment.setOnClickListener {
+        refClasses.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var canDelete = true
+
+                for (item in snapshot.children) {
+                    if (item.child("worker").value.toString() == sharedViewModel.id) {
+                        canDelete = false
+                    }
+                }
+
+                binding.btnDeleteEditWorkerFragment.setOnClickListener {
+                    if (canDelete) {
+                        refWorkers.removeValue()
+                            .addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    back()
+                                    Toast.makeText(context, getString(R.string.ToastDeleteWorker), Toast.LENGTH_LONG).show()
+                                } else {
+                                    Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                    } else {
+                        Toast.makeText(context, getString(R.string.ToastDeleteWorkerError), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+        binding.btnEditEditWorkerFragment.setOnClickListener {
             val temp = hashMapOf(
                 "email" to binding.etEmailEditWorkerFragment.text.toString(),
                 "name" to binding.etNameEditWorkerFragment.text.toString(),
@@ -76,10 +114,18 @@ class EditWorkerFragment : Fragment() {
             )
 
             refWorkers.setValue(temp)
-
-            navControl.navigate(R.id.action_editWorkerFragment_to_changeWorkersFragment)
-
-            Toast.makeText(context, getString(R.string.ToastEditOfficeWorker), Toast.LENGTH_SHORT).show()
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        Toast.makeText(context, getString(R.string.ToastEditOfficeWorker), Toast.LENGTH_SHORT).show()
+                        back()
+                    } else {
+                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                    }
+                }
         }
+    }
+
+    private fun back() {
+        navControl.navigate(R.id.action_editWorkerFragment_to_changeWorkersFragment)
     }
 }

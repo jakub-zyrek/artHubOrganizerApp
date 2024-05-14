@@ -46,27 +46,31 @@ class StartFragment : Fragment() {
             if (auth.currentUser != null) {
                 myRef.child(auth.currentUser!!.uid).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        when (snapshot.child("role").value) {
-                            "officeWorker" -> {
-                                navController.navigate(R.id.action_startFragment_to_officeWorkerMenuFragment)
-                                sharedViewModel.role = "officeWorker"
-                                sharedViewModel.idHouse = snapshot.child("id").value.toString()
+                        if (snapshot.exists()) {
+                            when (snapshot.child("role").value) {
+                                "officeWorker" -> {
+                                    navController.navigate(R.id.action_startFragment_to_officeWorkerMenuFragment)
+                                    sharedViewModel.role = "officeWorker"
+                                    sharedViewModel.idHouse = snapshot.child("id").value.toString()
+                                }
+                                "worker" -> {
+                                    navController.navigate(R.id.action_startFragment_to_workerMenuFragment)
+                                    sharedViewModel.role = "worker"
+                                    sharedViewModel.idHouse = snapshot.child("id").value.toString()
+                                }
+                                "admin" -> {
+                                    navController.navigate(R.id.action_startFragment_to_adminMenuFragment)
+                                    sharedViewModel.role = "admin"
+                                    sharedViewModel.idHouse = auth.currentUser!!.uid
+                                    sharedViewModel.checkTicket = true
+                                    sharedViewModel.clas = true
+                                    sharedViewModel.event = true
+                                    sharedViewModel.sellTicket = true
+                                    sharedViewModel.students = true
+                                }
                             }
-                            "worker" -> {
-                                navController.navigate(R.id.action_startFragment_to_workerMenuFragment)
-                                sharedViewModel.role = "worker"
-                                sharedViewModel.idHouse = snapshot.child("id").value.toString()
-                            }
-                            "admin" -> {
-                                navController.navigate(R.id.action_startFragment_to_adminMenuFragment)
-                                sharedViewModel.role = "admin"
-                                sharedViewModel.idHouse = auth.currentUser!!.uid
-                                sharedViewModel.checkTicket = true
-                                sharedViewModel.clas = true
-                                sharedViewModel.event = true
-                                sharedViewModel.sellTicket = true
-                                sharedViewModel.students = true
-                            }
+                        } else {
+                            navController.navigate(R.id.action_startFragment_to_noneCultureHouseFragment)
                         }
                     }
 

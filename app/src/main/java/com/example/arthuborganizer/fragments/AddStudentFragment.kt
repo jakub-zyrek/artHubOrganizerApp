@@ -73,7 +73,7 @@ class AddStudentFragment : Fragment() {
                             Toast.makeText(context, getString(R.string.ToastAddStudent), Toast.LENGTH_SHORT).show()
                             back()
                         } else {
-                            Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
                         }
                     }
             }
