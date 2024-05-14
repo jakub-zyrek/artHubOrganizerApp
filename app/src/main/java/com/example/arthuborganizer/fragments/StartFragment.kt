@@ -81,7 +81,7 @@ class StartFragment : Fragment() {
             } else {
                 navController.navigate(R.id.action_startFragment_to_loginFragment)
             }
-        }, 2000)
+        }, 1000)
     }
 
 }

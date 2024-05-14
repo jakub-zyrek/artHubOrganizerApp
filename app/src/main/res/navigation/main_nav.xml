@@ -543,6 +543,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeStudentsFragment_to_changeStudentsClassFragment"
+            app:destination="@id/changeStudentsClassFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/changeStudentsClassFragment"
@@ -566,6 +573,13 @@
         <action
             android:id="@+id/action_changeStudentsClassFragment_to_editStudentFragment"
             app:destination="@id/editStudentFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_changeStudentsClassFragment_to_changeStudentsFragment"
+            app:destination="@id/changeStudentsFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"

@@ -148,7 +148,10 @@
     <string name="navBarEditStudent">Edytowanie uczestnika</string>
     <string name="ToastChangeStudent">Zmieniono uczestnika</string>
     <string name="ToastDeleteStudentFromClasses">Usunięto uczestnika ze wszystkich zajęć</string>
-    <string name="ToastDeleteStudent">Usunięto uczestnika (poza imieniem i nazwiskiem)</string>
+    <string name="ToastDeleteStudentWithout">Usunięto uczestnika (poza imieniem i nazwiskiem)</string>
+    <string name="ToastDeleteStudent">Usunięto uczestnika</string>
+    <string name="selectStudentLabel">Wybierz ucznia</string>
+    <string name="navBarAddStudents">Dodaj uczestników</string>
 
 
 </resources>

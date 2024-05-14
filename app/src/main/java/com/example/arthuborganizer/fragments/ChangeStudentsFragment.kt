@@ -2,6 +2,7 @@ package com.example.arthuborganizer.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,10 +27,12 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
     private lateinit var binding : FragmentChangeStudentsBinding
     private lateinit var database : FirebaseDatabase
     private lateinit var refStudents : DatabaseReference
+    private lateinit var refStudentsClass : DatabaseReference
     private lateinit var mList : MutableList<RecyclerViewItem>
     private lateinit var adapter : RecyclerViewAdapter
     private lateinit var navControl : NavController
     private val sharedViewModel: ViewModelVariables by activityViewModels()
+    private lateinit var listOfSelected : MutableList<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,12 +40,20 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
     ): View {
         binding = FragmentChangeStudentsBinding.inflate(inflater, container, false)
 
-        binding.navBar.tvNavBarLabel.text = getString(R.string.navNarChangeStrudents)
+        if (sharedViewModel.typeOfClass == "change") {
+            binding.navBar.tvNavBarLabel.text = getString(R.string.navNarChangeStrudents)
+        } else if (sharedViewModel.typeOfClass == "add") {
+            binding.navBar.tvNavBarLabel.text = getString(R.string.navBarAddStudents)
+        }
 
         binding.navBar.ivNavBarBack.setOnClickListener { back() }
 
         binding.btnAddChangeStudentsFragment.setOnClickListener {
-            navControl.navigate(R.id.action_changeStudentsFragment_to_addStudentFragment)
+            if (sharedViewModel.typeOfClass == "change") {
+                navControl.navigate(R.id.action_changeStudentsFragment_to_addStudentFragment)
+            } else if (sharedViewModel.typeOfClass == "add") {
+                add()
+            }
         }
 
         return binding.root
@@ -54,8 +65,9 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
         database = FirebaseDatabase.getInstance()
         refStudents = database.getReference(sharedViewModel.idHouse).child("students")
         navControl = Navigation.findNavController(view)
+        refStudentsClass = database.getReference(sharedViewModel.idHouse).child("classes").child(sharedViewModel.id).child("students")
 
-        if (!sharedViewModel.students) {
+        if (!sharedViewModel.students && sharedViewModel.typeOfClass != "add") {
             Toast.makeText(context, getString(R.string.ToastNoAccess), Toast.LENGTH_SHORT).show()
             back()
         }
@@ -64,7 +76,12 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
         binding.rvChangeStudentsFragment.layoutManager = LinearLayoutManager(context)
 
         mList = mutableListOf()
-        adapter = RecyclerViewAdapter(mList)
+        if (sharedViewModel.typeOfClass == "add") {
+            listOfSelected = mutableListOf()
+            adapter = RecyclerViewAdapter(mList, R.drawable.add, R.drawable.add_selected)
+        } else {
+            adapter = RecyclerViewAdapter(mList)
+        }
         adapter.setListener(this)
         binding.rvChangeStudentsFragment.adapter = adapter
 
@@ -76,13 +93,41 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 mList.clear()
-                for (temp in snapshot.children) {
-                    if (temp.child("email").value.toString() != "null") {
-                        mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), ""))
-                    }
-                }
 
-                adapter.notifyDataSetChanged()
+                if (sharedViewModel.typeOfClass == "change") {
+                    for (temp in snapshot.children) {
+                        if (temp.child("email").value.toString() != "null") {
+                            mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), ""))
+                        }
+                    }
+
+                    adapter.notifyDataSetChanged()
+                } else if (sharedViewModel.typeOfClass == "add") {
+                    refStudentsClass.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshotClass: DataSnapshot) {
+                            val listOfIndex : MutableList<String> = mutableListOf()
+
+                            for (temp in snapshotClass.children) {
+                                listOfIndex.add(temp.key.toString())
+                            }
+
+                            for (temp in snapshot.children) {
+                                if (temp.key !in listOfIndex) {
+                                    if (temp.child("email").value.toString() != "null") {
+                                        mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), temp.child("surname").value.toString()))
+                                    }
+                                }
+                            }
+
+                            adapter.notifyDataSetChanged()
+                        }
+
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                        }
+
+                    })
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -93,15 +138,43 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
     }
 
     override fun onItemClick(item: RecyclerViewItem) {
-        sharedViewModel.id = item.id
-        navControl.navigate(R.id.action_changeStudentsFragment_to_editStudentFragment)
+        if (sharedViewModel.typeOfClass == "change") {
+            sharedViewModel.id = item.id
+            navControl.navigate(R.id.action_changeStudentsFragment_to_editStudentFragment)
+        } else if (sharedViewModel.typeOfClass == "add") {
+            if (item.id !in listOfSelected) {
+                listOfSelected.add(item.id)
+            } else {
+                listOfSelected.remove(item.id)
+            }
+
+            Log.d("s", listOfSelected.toString())
+        }
     }
 
     private fun back() {
-        if (sharedViewModel.role == "officeWorker") {
-            navControl.navigate(R.id.action_changeStudentsFragment_to_officeWorkerMenuFragment)
-        } else {
-            navControl.navigate(R.id.action_changeStudentsFragment_to_adminMenuFragment)
+        if (sharedViewModel.typeOfClass == "change") {
+            if (sharedViewModel.role == "officeWorker") {
+                navControl.navigate(R.id.action_changeStudentsFragment_to_officeWorkerMenuFragment)
+            } else {
+                navControl.navigate(R.id.action_changeStudentsFragment_to_adminMenuFragment)
+            }
+        } else if (sharedViewModel.typeOfClass == "add") {
+            navControl.navigate(R.id.action_changeStudentsFragment_to_changeStudentsClassFragment)
+            sharedViewModel.typeOfClass = "change"
         }
+    }
+
+    private fun add() {
+        for (item in listOfSelected) {
+            refStudentsClass.child(item).setValue(true)
+                .addOnCompleteListener {
+                    if (!it.isSuccessful) {
+                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+
+        back()
     }
 }

@@ -114,7 +114,7 @@ class EditClassFragment : Fragment() {
                 for (item in snapshot.children) {
                     temp++
 
-                    if (item.child("role").value.toString() == "worker" && item.child("id").value.toString() == sharedViewModel.idHouse) {
+                    if (item.child("role").value.toString() == "worker" && item.child("id").value.toString() == sharedViewModel.idHouse && item.child("password").value.toString() == "null") {
                         workers.add(item.child("name").value.toString() + " " + item.child("surname").value.toString())
                         workersId.add(item.key.toString())
 

@@ -97,7 +97,7 @@ class EditStudentFragment : Fragment() {
                     for (item in snapshot.children) {
                         for (student in item.child("students").children) {
                             if (student.key == sharedViewModel.id) {
-                                refClasses.child(item.key.toString()).child("students").child(student.key.toString()).setValue(false)
+                                refClasses.child(item.key.toString()).child("students").child(student.key.toString()).removeValue()
                                     .addOnCompleteListener {
                                         if (it.isSuccessful) {
                                             Toast.makeText(context, getString(R.string.ToastDeleteStudentFromClasses), Toast.LENGTH_SHORT).show()
@@ -109,31 +109,28 @@ class EditStudentFragment : Fragment() {
                         }
                     }
 
-                    // delete student from students
-                    refStudent.child("email").removeValue()
-                        .addOnCompleteListener { it ->
-                            if (it.isSuccessful) {
-                                refStudent.child("dateOfBirth").removeValue()
-                                    .addOnCompleteListener { it2 ->
-                                        if (it2.isSuccessful) {
-                                            refStudent.child("phoneNumber").removeValue()
-                                                .addOnCompleteListener { it3 ->
-                                                    if (!it3.isSuccessful) {
-                                                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
-                                                    } else {
-                                                        Toast.makeText(context, getString(R.string.ToastDeleteStudent), Toast.LENGTH_SHORT).show()
-                                                        back()
-                                                    }
-                                                }
-                                        } else {
-                                            Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
-                                        }
+                    refStudent.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot1: DataSnapshot) {
+                            val temp = hashMapOf(
+                                "name" to snapshot1.child("name").value.toString(),
+                                "surname" to snapshot1.child("surname").value.toString()
+                            )
+
+                            refStudent.setValue(temp)
+                                .addOnCompleteListener {
+                                    if (!it.isSuccessful) {
+                                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(context, getString(R.string.ToastDeleteStudentWithout), Toast.LENGTH_SHORT).show()
+                                        back()
                                     }
-                            } else {
-                                Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
-                            }
+                                }
                         }
 
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                        }
+                    })
                 }
 
                 override fun onCancelled(error: DatabaseError) {

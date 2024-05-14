@@ -64,7 +64,7 @@ class AddOfficeWorkerFragment : Fragment() {
                 refUsers.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (x in snapshot.children) {
-                            if (binding.etEmailAddOfficeWorkerFragment.text.toString().trim() == x.child("email").value.toString()) {
+                            if (binding.etEmailAddOfficeWorkerFragment.text.toString().trim().lowercase() == x.child("email").value.toString()) {
                                 emails = false
                                 break
                             }
@@ -79,7 +79,7 @@ class AddOfficeWorkerFragment : Fragment() {
                                     "sellTicket" to binding.switchSellTicketAddOfficeWorkerFragment.isChecked,
                                     "students" to binding.switchStudentsAddOfficeWorkerFragment.isChecked
                                 ),
-                                "email" to binding.etEmailAddOfficeWorkerFragment.text.toString().trim(),
+                                "email" to binding.etEmailAddOfficeWorkerFragment.text.toString().trim().lowercase(),
                                 "name" to binding.etNameAddOfficeWorkerFragment.text.toString().trim(),
                                 "surname" to binding.etSurnameAddOfficeWorkerFragment.text.toString().trim(),
                                 "role" to "officeWorker",

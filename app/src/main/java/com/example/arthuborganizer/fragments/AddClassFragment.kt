@@ -224,7 +224,7 @@ class AddClassFragment : Fragment() {
         refWorkers.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (item in snapshot.children) {
-                    if (item.child("role").value.toString() == "worker" && item.child("id").value.toString() == sharedViewModel.idHouse) {
+                    if (item.child("role").value.toString() == "worker" && item.child("id").value.toString() == sharedViewModel.idHouse && item.child("password").value.toString() == "null") {
                         workers.add(item.child("name").value.toString() + " " + item.child("surname").value.toString())
                         workersId.add(item.key.toString())
                     }

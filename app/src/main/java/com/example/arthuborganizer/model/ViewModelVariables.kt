@@ -14,4 +14,7 @@ class ViewModelVariables : ViewModel() {
     var sellTicket:Boolean = false
     var students:Boolean = false
     var idHouse: String = ""
+
+    //variables to class
+    var typeOfClass = "change"
 }

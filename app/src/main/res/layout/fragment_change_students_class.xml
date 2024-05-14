@@ -40,6 +40,7 @@
     </LinearLayout>
 
     <include
+        android:id="@+id/deleteMenuChangeStudentsClassFragment"
         layout="@layout/delete_menu"
         android:visibility="gone"
         />

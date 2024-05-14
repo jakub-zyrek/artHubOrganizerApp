@@ -62,7 +62,7 @@ class AddWorkerFragment : Fragment() {
                 refWorkers.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (x in snapshot.children) {
-                            if (binding.etEmailAddWorkerFragment.text.toString().trim() == x.child("email").value.toString()) {
+                            if (binding.etEmailAddWorkerFragment.text.toString().trim().lowercase() == x.child("email").value.toString()) {
                                 emails = false
                                 break
                             }
@@ -70,7 +70,7 @@ class AddWorkerFragment : Fragment() {
 
                         if (emails) {
                             val user = hashMapOf(
-                                "email" to binding.etEmailAddWorkerFragment.text.toString().trim(),
+                                "email" to binding.etEmailAddWorkerFragment.text.toString().trim().lowercase(),
                                 "name" to binding.etNameAddWorkerFragment.text.toString().trim(),
                                 "surname" to binding.etSurnameAddWorkerFragment.text.toString().trim(),
                                 "role" to "worker",

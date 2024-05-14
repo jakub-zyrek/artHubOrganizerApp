@@ -54,7 +54,7 @@ class SignUpWorkerFragment : Fragment() {
                 myRef.addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
                         for (childSnapshot in snapshot.children) {
-                            if (binding.etLoginSignUpWorkerFragment.text.toString().trim() == childSnapshot.child("email").value) {
+                            if (binding.etLoginSignUpWorkerFragment.text.toString().trim().lowercase() == childSnapshot.child("email").value.toString()) {
                                 emailInDatabase = true
 
                                 val temp = childSnapshot.value as Map<*, *>
