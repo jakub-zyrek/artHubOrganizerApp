@@ -57,7 +57,9 @@ class AddStudentFragment : Fragment() {
                 binding.etSurnameAddStudentFragment.text.toString().isEmpty() ||
                 binding.btnDateAddStudentFragment.text == getText(R.string.clickLabel)
             ) {
-                Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, getString(R.string.ToastFillDetails), Toast.LENGTH_SHORT).show()
+            } else if (binding.etPhoneAddStudentFragment.text.toString().length != 9) {
+                Toast.makeText(context, getString(R.string.ToastGoodPhoneNumber), Toast.LENGTH_SHORT).show()
             } else {
                 val user = hashMapOf(
                     "email" to binding.etEmailAddStudentFragment.text.toString().trim(),

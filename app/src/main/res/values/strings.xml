@@ -80,7 +80,7 @@
     <string name="daysLabel">Dni tygodnia</string>
     <string name="phoneNumberLabel">Telefon kontakowy</string>
     <string name="enterPhoneNumberLabel">Wprowadź telefon</string>
-    <string name="hintPhoneNumber">Dla uczestników niepełnoletnich: Telefon rodzica</string>
+    <string name="hintPhoneNumber">Dla uczestników niepełnoletnich: Telefon rodzica (wprowadź bez spacji i numeru kierunkowego)</string>
     <string name="hintEmail">Dla uczestników niepełnoletnich: Email rodzica</string>
     <string name="changeStudentsClassButtonLabel">Zarządzaj uczestnikami zajęć</string>
     <string name="ticketLabel">Bilet</string>
@@ -152,6 +152,11 @@
     <string name="ToastDeleteStudent">Usunięto uczestnika</string>
     <string name="selectStudentLabel">Wybierz ucznia</string>
     <string name="navBarAddStudents">Dodaj uczestników</string>
+    <string name="navBarCheckFrequency">Plan zajęć</string>
+    <string name="noClassLabel">Brak zajęć w tym dniu</string>
+    <string name="ToastChangeFrequency">Zmieniono frekwencje</string>
+    <string name="navBarFrequency">Sprawdź obecność</string>
+    <string name="ToastGoodPhoneNumber">Wprowadź poprawny numer telefonu</string>
 
 
 </resources>

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.arthuborganizer.R
 import com.example.arthuborganizer.databinding.ItemLayoutBinding
 
-
 class RecyclerViewAdapter(private val list: MutableList<RecyclerViewItem>, private val imageId: Int = R.drawable.edit, private val imageSelected: Int? = null) : RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>() {
 
     inner class RecyclerViewHolder(val binding: ItemLayoutBinding) :
@@ -33,6 +32,11 @@ class RecyclerViewAdapter(private val list: MutableList<RecyclerViewItem>, priva
 
         holder.binding.tvFullNameItem.text = (currentItem.value1 + " " + currentItem.value2).trim()
         holder.binding.image.setImageResource(imageId)
+
+        if (!currentItem.present && imageSelected != null) {
+            holder.binding.tvFullNameItem.setTypeface(null, Typeface.BOLD)
+            holder.binding.image.setImageResource(imageSelected)
+        }
 
         holder.binding.root.setOnClickListener {
             listener?.onItemClick(currentItem)

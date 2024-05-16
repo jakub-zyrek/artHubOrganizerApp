@@ -1,10 +1,13 @@
 package com.example.arthuborganizer.model
 
 import androidx.lifecycle.ViewModel
+import java.util.Calendar
 
 class ViewModelVariables : ViewModel() {
     //variables to using app
     var id:String = ""
+    var idClass:String = ""
+    var selectedDate: Calendar = Calendar.getInstance()
 
     //variables for users
     var role:String = ""
