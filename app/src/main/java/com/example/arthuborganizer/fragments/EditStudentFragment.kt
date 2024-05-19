@@ -1,6 +1,8 @@
 package com.example.arthuborganizer.fragments
 
 import android.os.Bundle
+import android.text.InputType
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +20,10 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.getValue
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -53,12 +58,20 @@ class EditStudentFragment : Fragment() {
         refStudent = database.getReference(sharedViewModel.idHouse).child("students").child(sharedViewModel.id)
         refClasses = database.getReference(sharedViewModel.idHouse).child("classes")
 
+        if (sharedViewModel.typeOfClass == "view") {
+            binding.etNumberEditStudentFragment.inputType = InputType.TYPE_NULL
+            binding.etEmailEditStudentFragment.inputType = InputType.TYPE_NULL
+            binding.etNameEditStudentFragment.inputType = InputType.TYPE_NULL
+            binding.etSurnameEditStudentFragment.inputType = InputType.TYPE_NULL
+
+            binding.btnDeleteEditStudent.visibility = View.GONE
+            binding.btnChangeEditStudent.visibility = View.GONE
+        }
+
         refStudent.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.btnDateEditStudent.text = snapshot.child("dateOfBirth").value.toString()
-
                 binding.btnDateEditStudent.setOnClickListener { showDatePicker() }
-
                 binding.etEmailEditStudentFragment.setText(snapshot.child("email").value.toString())
                 binding.etNameEditStudentFragment.setText(snapshot.child("name").value.toString())
                 binding.etNumberEditStudentFragment.setText(snapshot.child("phoneNumber").value.toString())
@@ -142,28 +155,33 @@ class EditStudentFragment : Fragment() {
     }
 
     private fun showDatePicker() {
-        val temp : Long
+        if (sharedViewModel.typeOfClass != "view") {
+            val temp: Long
 
-        if (binding.btnDateEditStudent.text != getString(R.string.selectButtonLabel)) {
-            val calendar = Calendar.getInstance()
-            val parseDate = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse(binding.btnDateEditStudent.text.toString())
-            calendar.time = parseDate!!
-            calendar.add(Calendar.DAY_OF_MONTH, 1)
+            if (binding.btnDateEditStudent.text != getString(R.string.selectButtonLabel)) {
+                val calendar = Calendar.getInstance()
+                val parseDate = SimpleDateFormat(
+                    "dd.MM.yyyy",
+                    Locale.getDefault()
+                ).parse(binding.btnDateEditStudent.text.toString())
+                calendar.time = parseDate!!
+                calendar.add(Calendar.DAY_OF_MONTH, 1)
 
-            temp = calendar.timeInMillis
-        } else {
-            temp = MaterialDatePicker.todayInUtcMilliseconds()
-        }
+                temp = calendar.timeInMillis
+            } else {
+                temp = MaterialDatePicker.todayInUtcMilliseconds()
+            }
 
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText(getString(R.string.DatePickerSelectData))
-            .setSelection(temp)
-            .build()
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText(getString(R.string.DatePickerSelectData))
+                .setSelection(temp)
+                .build()
 
-        datePicker.show(getChildFragmentManager(), "DatePickerTag")
+            datePicker.show(getChildFragmentManager(), "DatePickerTag")
 
-        datePicker.addOnPositiveButtonClickListener {
-            binding.btnDateEditStudent.text = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date(it))
+            datePicker.addOnPositiveButtonClickListener {
+                binding.btnDateEditStudent.text = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date(it))
+            }
         }
     }
 

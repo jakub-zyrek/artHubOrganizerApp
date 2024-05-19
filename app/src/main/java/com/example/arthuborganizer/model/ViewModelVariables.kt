@@ -8,6 +8,7 @@ class ViewModelVariables : ViewModel() {
     var id:String = ""
     var idClass:String = ""
     var selectedDate: Calendar = Calendar.getInstance()
+    var selectedDateSellTicket: Calendar = Calendar.getInstance()
 
     //variables for users
     var role:String = ""

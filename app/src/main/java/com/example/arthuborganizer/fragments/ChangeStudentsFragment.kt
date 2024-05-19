@@ -44,6 +44,9 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             binding.navBar.tvNavBarLabel.text = getString(R.string.navNarChangeStrudents)
         } else if (sharedViewModel.typeOfClass == "add") {
             binding.navBar.tvNavBarLabel.text = getString(R.string.navBarAddStudents)
+        } else if (sharedViewModel.typeOfClass == "view") {
+            binding.navBar.tvNavBarLabel.text = getString(R.string.navBarStudentsInfo)
+            binding.btnAddChangeStudentsFragment.visibility = View.GONE
         }
 
         binding.navBar.ivNavBarBack.setOnClickListener { back() }
@@ -67,7 +70,7 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
         navControl = Navigation.findNavController(view)
         refStudentsClass = database.getReference(sharedViewModel.idHouse).child("classes").child(sharedViewModel.id).child("students")
 
-        if (!sharedViewModel.students && sharedViewModel.typeOfClass != "add") {
+        if (!sharedViewModel.students && sharedViewModel.typeOfClass != "add" && sharedViewModel.typeOfClass != "view") {
             Toast.makeText(context, getString(R.string.ToastNoAccess), Toast.LENGTH_SHORT).show()
             back()
         }
@@ -94,12 +97,14 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 mList.clear()
 
-                if (sharedViewModel.typeOfClass == "change") {
+                if (sharedViewModel.typeOfClass == "change" || sharedViewModel.typeOfClass == "view") {
                     for (temp in snapshot.children) {
                         if (temp.child("email").value.toString() != "null") {
-                            mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), ""))
+                            mList.add(RecyclerViewItem(temp.key.toString(), temp.child("surname").value.toString(), temp.child("name").value.toString()))
                         }
                     }
+
+                    mList.sortWith(compareBy(RecyclerViewItem :: value1))
 
                     adapter.notifyDataSetChanged()
                 } else if (sharedViewModel.typeOfClass == "add") {
@@ -114,10 +119,12 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
                             for (temp in snapshot.children) {
                                 if (temp.key !in listOfIndex) {
                                     if (temp.child("email").value.toString() != "null") {
-                                        mList.add(RecyclerViewItem(temp.key.toString(), temp.child("name").value.toString(), temp.child("surname").value.toString()))
+                                        mList.add(RecyclerViewItem(temp.key.toString(), temp.child("surname").value.toString(), temp.child("name").value.toString()))
                                     }
                                 }
                             }
+
+                            mList.sortWith(compareBy(RecyclerViewItem :: value1))
 
                             adapter.notifyDataSetChanged()
                         }
@@ -138,7 +145,7 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
     }
 
     override fun onItemClick(item: RecyclerViewItem) {
-        if (sharedViewModel.typeOfClass == "change") {
+        if (sharedViewModel.typeOfClass == "change" || sharedViewModel.typeOfClass == "view") {
             sharedViewModel.id = item.id
             navControl.navigate(R.id.action_changeStudentsFragment_to_editStudentFragment)
         } else if (sharedViewModel.typeOfClass == "add") {
@@ -147,8 +154,6 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             } else {
                 listOfSelected.remove(item.id)
             }
-
-            Log.d("s", listOfSelected.toString())
         }
     }
 
@@ -160,8 +165,11 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
                 navControl.navigate(R.id.action_changeStudentsFragment_to_adminMenuFragment)
             }
         } else if (sharedViewModel.typeOfClass == "add") {
-            navControl.navigate(R.id.action_changeStudentsFragment_to_changeStudentsClassFragment)
             sharedViewModel.typeOfClass = "change"
+            navControl.navigate(R.id.action_changeStudentsFragment_to_changeStudentsClassFragment)
+        } else if (sharedViewModel.typeOfClass == "view") {
+            sharedViewModel.typeOfClass = "change"
+            navControl.navigate(R.id.action_changeStudentsFragment_to_workerMenuFragment)
         }
     }
 

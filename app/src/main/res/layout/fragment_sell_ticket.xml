@@ -169,9 +169,10 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btnSellTicket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sellLabel"
+        android:text="@string/sellButtonLabel"
         android:layout_margin="15dp"
         />
 

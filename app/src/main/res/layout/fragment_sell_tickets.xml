@@ -30,6 +30,17 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/noClassSellTicketsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/noEventsLabel"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:visibility="gone"
+                android:textColor="@color/secondaryColor"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSellTicketsFragment"
                 android:layout_width="match_parent"
