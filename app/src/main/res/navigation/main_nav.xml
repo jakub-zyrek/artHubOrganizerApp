@@ -196,6 +196,13 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_officeWorkerMenuFragment_to_changeOneClassFragment"
+            app:destination="@id/changeOneClassFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/workerMenuFragment"
@@ -728,6 +735,19 @@
         <action
             android:id="@+id/action_noneCultureHouseFragment_to_startFragment"
             app:destination="@id/startFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeOneClassFragment"
+        android:name="com.example.arthuborganizer.fragments.ChangeOneClassFragment"
+        android:label="fragment_change_one_class"
+        tools:layout="@layout/fragment_change_one_class" >
+        <action
+            android:id="@+id/action_changeOneClassFragment_to_officeWorkerMenuFragment"
+            app:destination="@id/officeWorkerMenuFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"

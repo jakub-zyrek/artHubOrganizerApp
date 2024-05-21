@@ -147,9 +147,8 @@ class AddEventFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun showTimePicker() {
-        val time : List<String>
 
-        time = if (binding.btnHourAddEventFragment.text.toString() != getString(R.string.hourLabel)) {
+        val time : List<String> = if (binding.btnHourAddEventFragment.text.toString() != getString(R.string.hourLabel)) {
             binding.btnHourAddEventFragment.text.toString().split(":")
         } else {
             listOf("00", "00")
@@ -166,8 +165,8 @@ class AddEventFragment : Fragment() {
         timePicker.show(getChildFragmentManager(), "TimePickerTag")
 
         timePicker.addOnPositiveButtonClickListener {
-            if (timePicker.minute.toString() == "0") {
-                binding.btnHourAddEventFragment.text = timePicker.hour.toString() + ":00"
+            if (timePicker.minute < 10) {
+                binding.btnHourAddEventFragment.text = timePicker.hour.toString() + ":0" + timePicker.minute.toString()
             } else {
                 binding.btnHourAddEventFragment.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
             }

@@ -2,7 +2,6 @@ package com.example.arthuborganizer.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -116,10 +115,9 @@ class ChangeStudentsClassFragment : Fragment(), RecyclerViewAdapter.OnClickListe
             override fun onDataChange(snapshot: DataSnapshot) {
                 mList.clear()
                 for (temp in snapshot.children) {
-                    Log.d("true", temp.key.toString())
                     refStudent.child(temp.key.toString()).addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshotStudent: DataSnapshot) {
-                            mList.add(RecyclerViewItem(snapshotStudent.key.toString(), snapshotStudent.child("name").value.toString(), snapshotStudent.child("surname").value.toString()))
+                            mList.add(RecyclerViewItem(snapshotStudent.key.toString(), snapshotStudent.child("surname").value.toString(), snapshotStudent.child("name").value.toString()))
                             adapter.notifyDataSetChanged()
                         }
 
@@ -128,6 +126,7 @@ class ChangeStudentsClassFragment : Fragment(), RecyclerViewAdapter.OnClickListe
                         }
                     })
                 }
+                mList.sortBy { it.value2 }
             }
 
             override fun onCancelled(error: DatabaseError) {

@@ -33,9 +33,10 @@
             android:id="@+id/btnAddChangeRoomsFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/addButtonLabel"
             android:layout_margin="15dp"
-            />
+            android:text="@string/addButtonLabel"
+            android:textColor="@color/white"
+            tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
     </LinearLayout>
 

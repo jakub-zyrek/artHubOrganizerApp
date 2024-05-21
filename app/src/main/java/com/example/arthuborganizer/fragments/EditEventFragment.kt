@@ -90,7 +90,7 @@ class EditEventFragment : Fragment() {
             refEvent.child("hour").setValue(binding.btnHourEditEventFragment.text.toString())
             refEvent.child("room").setValue(selectedRoom)
 
-            Toast.makeText(requireContext(), getString(R.string.ToastEditEvent), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.ToastEditEvent), Toast.LENGTH_SHORT).show()
             back()
         }
 
@@ -98,10 +98,10 @@ class EditEventFragment : Fragment() {
             refEvent.removeValue()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Toast.makeText(requireContext(), getString(R.string.ToastDeleteEvent), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.ToastDeleteEvent), Toast.LENGTH_SHORT).show()
                         back()
                     } else {
-                        Toast.makeText(requireContext(), getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
                     }
                 }
         }
@@ -143,7 +143,9 @@ class EditEventFragment : Fragment() {
     private fun showDatePicker(date : String) {
         val calendar = Calendar.getInstance()
         val parseDate = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).parse(date)
-        calendar.time = parseDate
+        if (parseDate != null) {
+            calendar.time = parseDate
+        }
         calendar.add(Calendar.DAY_OF_MONTH, 1)
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
@@ -171,8 +173,8 @@ class EditEventFragment : Fragment() {
         timePicker.show(getChildFragmentManager(), "TimePickerTag")
 
         timePicker.addOnPositiveButtonClickListener {
-            if (timePicker.minute.toString() == "0") {
-                binding.btnHourEditEventFragment.text = timePicker.hour.toString() + ":00"
+            if (timePicker.minute < 10) {
+                binding.btnHourEditEventFragment.text = timePicker.hour.toString() + ":0" + timePicker.minute.toString()
             } else {
                 binding.btnHourEditEventFragment.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
             }

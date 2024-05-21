@@ -162,7 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Czas"
+                android:text="@string/timeLabel"
                 android:textSize="20sp"
                 />
 
@@ -171,6 +171,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnDateAddEventFragment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -185,16 +186,18 @@
                     android:id="@+id/btnHourAddEventFragment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/hourLabel"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:padding="10dp"
                     android:layout_marginStart="5dp"
-                    />
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:text="@string/hourLabel"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    tools:ignore="TextContrastCheck" />
 
             </LinearLayout>
 
             <Button
+android:textColor="@color/white"
                 android:id="@+id/btnAddAddEventFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

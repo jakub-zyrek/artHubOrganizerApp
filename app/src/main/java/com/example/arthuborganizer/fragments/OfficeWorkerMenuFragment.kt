@@ -52,11 +52,16 @@ class OfficeWorkerMenuFragment : Fragment() {
             navControl.navigate(R.id.action_officeWorkerMenuFragment_to_changeClassesFragment)
         }
 
+        binding.linearChangeOneClassOfficeWorkerMenuFragment.setOnClickListener {
+            navControl.navigate(R.id.action_officeWorkerMenuFragment_to_changeOneClassFragment)
+        }
+
         binding.linearChangeEventOfficeWorkerMenuFragment.setOnClickListener {
             navControl.navigate(R.id.action_officeWorkerMenuFragment_to_changeEventsFragment)
         }
 
         binding.linearChangeStudentsOfficeWorkerMenuFragment.setOnClickListener {
+            sharedViewModel.typeOfClass = "change"
             navControl.navigate(R.id.action_officeWorkerMenuFragment_to_changeStudentsFragment)
         }
 
@@ -79,36 +84,36 @@ class OfficeWorkerMenuFragment : Fragment() {
         refUser = database.getReference("users/" + auth.currentUser!!.uid)
         navControl = Navigation.findNavController(view)
 
-        refUser.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val temp = snapshot.child("name").value.toString() + "!"
-                binding.tvNameOfficeWorkerMenuFragment.text = temp
+        if (auth.currentUser != null) {
+            refUser.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val temp = snapshot.child("name").value.toString() + "!"
+                    binding.tvNameOfficeWorkerMenuFragment.text = temp
 
-                sharedViewModel.checkTicket = snapshot.child("access").child("checkTicket").value as Boolean
-                sharedViewModel.clas = snapshot.child("access").child("class").value as Boolean
-                sharedViewModel.event = snapshot.child("access").child("event").value as Boolean
-                sharedViewModel.sellTicket = snapshot.child("access").child("sellTicket").value as Boolean
-                sharedViewModel.students = snapshot.child("access").child("students").value as Boolean
+                    sharedViewModel.checkTicket = snapshot.child("access").child("checkTicket").value as Boolean
+                    sharedViewModel.clas = snapshot.child("access").child("class").value as Boolean
+                    sharedViewModel.event = snapshot.child("access").child("event").value as Boolean
+                    sharedViewModel.sellTicket = snapshot.child("access").child("sellTicket").value as Boolean
+                    sharedViewModel.students = snapshot.child("access").child("students").value as Boolean
 
-                cultureHouseRef = database.getReference(snapshot.child("id").value.toString() + "/name")
+                    cultureHouseRef = database.getReference(snapshot.child("id").value.toString() + "/name")
 
-                cultureHouseRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        binding.tvCultureHouseNameOfficeWorkerMenuFragment.text = snapshot.value.toString()
-                    }
+                    cultureHouseRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            binding.tvCultureHouseNameOfficeWorkerMenuFragment.text = snapshot.value.toString()
+                        }
 
-                    override fun onCancelled(error: DatabaseError) {
-                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
-                    }
+                        override fun onCancelled(error: DatabaseError) {
+                            Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                        }
 
-                })
-            }
+                    })
+                }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
-            }
+                override fun onCancelled(error: DatabaseError) {}
 
-        })
+            })
+        }
 
     }
 }

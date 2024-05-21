@@ -1,7 +1,7 @@
 package com.example.arthuborganizer.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.arthuborganizer.R
 import com.example.arthuborganizer.databinding.FragmentFrequencyBinding
 import com.example.arthuborganizer.model.RecyclerViewAdapter
-import com.example.arthuborganizer.model.RecyclerViewAdapterCalendar
-import com.example.arthuborganizer.model.RecyclerViewCalendarItem
 import com.example.arthuborganizer.model.RecyclerViewItem
 import com.example.arthuborganizer.model.ViewModelVariables
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -65,19 +62,22 @@ class FrequencyFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
         binding.rvFrequencyFragment.adapter = adapter
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 val refClass = snapshot.child("classes").child(sharedViewModel.idClass)
                 mList.clear()
 
                 if (refClass.child("lessons").child(sharedViewModel.id).child("frequency").value.toString() == "null") {
                     for (student in refClass.child("students").children) {
-                        mList.add(RecyclerViewItem(student.key.toString(), snapshot.child("students").child(student.key.toString()).child("name").value.toString(), snapshot.child("students").child(student.key.toString()).child("surname").value.toString()))
+                        mList.add(RecyclerViewItem(student.key.toString(), snapshot.child("students").child(student.key.toString()).child("surname").value.toString(), snapshot.child("students").child(student.key.toString()).child("name").value.toString()))
                     }
                 } else {
                     for (student in refClass.child("lessons").child(sharedViewModel.id).child("frequency").children) {
-                        mList.add(RecyclerViewItem(student.key.toString(), snapshot.child("students").child(student.key.toString()).child("name").value.toString(), snapshot.child("students").child(student.key.toString()).child("surname").value.toString(), student.value as Boolean))
+                        mList.add(RecyclerViewItem(student.key.toString(), snapshot.child("students").child(student.key.toString()).child("surname").value.toString(), snapshot.child("students").child(student.key.toString()).child("name").value.toString(), student.value as Boolean))
                     }
                 }
+
+                mList.sortBy { it.value2 }
 
                 adapter.notifyDataSetChanged()
             }

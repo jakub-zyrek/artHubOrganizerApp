@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.work.*
 import com.google.zxing.BarcodeFormat
@@ -32,7 +31,6 @@ class CreateQRAndSend {
                 bitmap.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
             }
         }
-        Log.d("CreateQRAndSend", "Generating QR Code")
         return bitmap
     }
 
@@ -41,7 +39,6 @@ class CreateQRAndSend {
         FileOutputStream(file).use { out ->
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
         }
-        Log.d("CreateQRAndSend", "Saving Bitmap to file: $fileName")
         return file
     }
 
@@ -73,7 +70,6 @@ class CreateQRAndSend {
             pdfDocument.writeTo(out)
         }
         pdfDocument.close()
-        Log.d("CreateQRAndSend", "Creating PDF with QR Code")
     }
 
     fun sendEmailUsingWorkManager(context: Context, subject: String, body: String, toEmail: String, pdfPaths: MutableList<Pair<String, String>>) {
@@ -114,13 +110,10 @@ class CreateQRAndSend {
             }.toMutableList()
 
             return try {
-                Log.d("SendEmailWorker", "Starting to send email")
                 sendEmail(subject, body, toEmail, pdfPaths)
-                Log.d("SendEmailWorker", "Email sent successfully")
                 pdfPaths.forEach {
                     File(it.first).delete()
-                    Log.d("SendEmailWorker", "Deleted file: ${it.first}")
-                } // Usuwanie plików po wysłaniu e-maila
+                }
                 Result.success()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -136,9 +129,9 @@ class CreateQRAndSend {
                 put("mail.smtp.starttls.enable", "true")
             }
 
-            val session = Session.getInstance(props, object : javax.mail.Authenticator() {
-                override fun getPasswordAuthentication(): javax.mail.PasswordAuthentication {
-                    return javax.mail.PasswordAuthentication("arthuborganizer@gmail.com", "zuao nkji spam igiy")
+            val session = Session.getInstance(props, object : Authenticator() {
+                override fun getPasswordAuthentication(): PasswordAuthentication {
+                    return PasswordAuthentication("arthuborganizer@gmail.com", "zuao nkji spam igiy")
                 }
             })
 
@@ -163,7 +156,6 @@ class CreateQRAndSend {
                 }
 
                 message.setContent(multipart)
-                Log.d("SendEmailWorker", "Sending Email to $toEmail")
                 Transport.send(message)
             } catch (e: MessagingException) {
                 e.printStackTrace()

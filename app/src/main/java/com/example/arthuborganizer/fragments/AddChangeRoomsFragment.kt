@@ -64,16 +64,20 @@ class AddChangeRoomsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             binding.addDeleteMenuAddChangeRooms.layoutAddDeleteRoomMenu.visibility = View.VISIBLE
 
             binding.addDeleteMenuAddChangeRooms.btnYesAddDeleteMenu.setOnClickListener {
-                myRef.push().setValue(binding.addDeleteMenuAddChangeRooms.etNameAddDeleteMenu.text.toString().trim())
-                    .addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            Toast.makeText(context, getString(R.string.ToastAddRoom), Toast.LENGTH_SHORT).show()
-                            binding.addDeleteMenuAddChangeRooms.etNameAddDeleteMenu.text?.clear()
-                            binding.addDeleteMenuAddChangeRooms.layoutAddDeleteRoomMenu.visibility = View.GONE
-                        } else {
-                            Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
+                if (binding.addDeleteMenuAddChangeRooms.etNameAddDeleteMenu.text!!.isNotEmpty()) {
+                    myRef.push().setValue(binding.addDeleteMenuAddChangeRooms.etNameAddDeleteMenu.text.toString().trim())
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(context, getString(R.string.ToastAddRoom), Toast.LENGTH_SHORT).show()
+                                binding.addDeleteMenuAddChangeRooms.etNameAddDeleteMenu.text?.clear()
+                                binding.addDeleteMenuAddChangeRooms.layoutAddDeleteRoomMenu.visibility = View.GONE
+                            } else {
+                                Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
+                            }
                         }
-                    }
+                } else {
+                    Toast.makeText(context, getString(R.string.ToastFillDetails), Toast.LENGTH_SHORT).show()
+                }
             }
 
             binding.addDeleteMenuAddChangeRooms.btnNoAddDeleteMenu.setOnClickListener {
@@ -141,8 +145,7 @@ class AddChangeRoomsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
             myRef.child(item.id).setValue(binding.addDeleteMenuAddChangeRooms.etNameAddDeleteMenu.text.toString())
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Toast.makeText(context,
-                            getString(R.string.ToastChangeName), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(R.string.ToastChangeName), Toast.LENGTH_SHORT).show()
                         binding.addDeleteMenuAddChangeRooms.etNameAddDeleteMenu.text?.clear()
                         binding.addDeleteMenuAddChangeRooms.layoutAddDeleteRoomMenu.visibility = View.GONE
                     } else {

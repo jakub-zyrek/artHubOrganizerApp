@@ -16,7 +16,6 @@ import com.example.arthuborganizer.databinding.FragmentSellTicketsBinding
 import com.example.arthuborganizer.model.RecyclerViewAdapterCalendar
 import com.example.arthuborganizer.model.RecyclerViewCalendarItem
 import com.example.arthuborganizer.model.ViewModelVariables
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

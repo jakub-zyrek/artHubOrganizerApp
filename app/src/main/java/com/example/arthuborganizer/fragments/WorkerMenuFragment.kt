@@ -2,7 +2,6 @@ package com.example.arthuborganizer.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +19,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.getValue
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -131,10 +129,14 @@ class WorkerMenuFragment : Fragment() {
                         for (lesson in item.child("lessons").children) {
                             calendar.time = dateFormat.parse(lesson.child("date").value.toString() + " " + lesson.child("time").value.toString())!!
 
-                            Log.d("d", calendar.time.toString())
                             if (calendar.time >= currentDateTime.time) {
-                                mList[item.child("name").value.toString()] = calendar.time
-                                break
+                                if (mList[item.child("name").value.toString()] != null) {
+                                    if (mList[item.child("name").value.toString()]!! >= calendar.time) {
+                                        mList[item.child("name").value.toString()] = calendar.time
+                                    }
+                                } else {
+                                    mList[item.child("name").value.toString()] = calendar.time
+                                }
                             }
                         }
                     }
@@ -142,14 +144,14 @@ class WorkerMenuFragment : Fragment() {
 
                 val result = mList.minByOrNull { (_, value) -> value }
 
-                binding.tvNameClassWorkerMenu.text = result!!.key
-                binding.tvDateClassWorkerMenu.text = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(result!!.value)
-                binding.tvTimeClassWorkerMenu.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(result.value)
+                if (result != null) {
+                    binding.tvNameClassWorkerMenu.text = result.key
+                    binding.tvDateClassWorkerMenu.text = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(result.value)
+                    binding.tvTimeClassWorkerMenu.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(result.value)
+                }
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                println("Wystąpił błąd podczas pobierania danych z Firebase: ${databaseError.message}")
-            }
+            override fun onCancelled(databaseError: DatabaseError) {}
         })
     }
 }

@@ -1,10 +1,8 @@
 package com.example.arthuborganizer.fragments
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.renderscript.Sampler.Value
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +16,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.arthuborganizer.R
 import com.example.arthuborganizer.databinding.FragmentTicketControlBinding
-import com.example.arthuborganizer.model.RecyclerViewAdapterCalendar
-import com.example.arthuborganizer.model.RecyclerViewCalendarItem
 import com.example.arthuborganizer.model.ViewModelVariables
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -77,12 +73,14 @@ class TicketControlFragment : Fragment() {
         }
     }
 
-    private val CAMERA_PERMISSION_CODE = 100
+    private val code = 100
 
     private fun checkCameraPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.CAMERA),
+                code
+            )
         } else {
             // Permission already granted
             binding.barcodeScanner.resume()
@@ -115,6 +113,11 @@ class TicketControlFragment : Fragment() {
                         binding.tvInformationTicketControl.setBackgroundResource(R.drawable.rounded_green_view)
                         binding.tvInformationTicketControl.text = getString(R.string.ticketIsActualLabel)
 
+                        binding.nuLinearEmail.visibility = View.VISIBLE
+                        binding.nuLinearTicket.visibility = View.VISIBLE
+                        binding.tvPlaceTicketControl.visibility = View.VISIBLE
+                        binding.tvScannedTicketControl.visibility = View.VISIBLE
+
                         if (ticket.child("scanned").value.toString() == "false") {
                             binding.tvScannedTicketControl.setTextColor(getColor(requireContext(), R.color.green))
                             binding.tvScannedTicketControl.text = getString(R.string.notScannedLabel)
@@ -139,6 +142,7 @@ class TicketControlFragment : Fragment() {
                     binding.nuLinearEmail.visibility = View.INVISIBLE
                     binding.nuLinearTicket.visibility = View.INVISIBLE
                     binding.tvPlaceTicketControl.visibility = View.INVISIBLE
+                    binding.tvScannedTicketControl.visibility = View.INVISIBLE
                     binding.tvInformationTicketControl.setBackgroundResource(R.drawable.rounded_red_view)
                     binding.tvInformationTicketControl.text = getString(R.string.ticketIsNotActualLabel)
                 }

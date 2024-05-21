@@ -109,7 +109,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/curtains" />
+                        android:src="@drawable/curtains"
+                        android:contentDescription="@string/curtainsImageLabel" />
 
                     <Space
                         android:layout_width="0dp"
@@ -143,7 +144,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/people" />
+                        android:src="@drawable/people"
+                        android:contentDescription="@string/peopleImageLabel" />
 
                     <Space
                         android:layout_width="0dp"
@@ -177,7 +179,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/sell" />
+                        android:src="@drawable/sell"
+                        android:contentDescription="@string/priceImageLabel" />
 
                     <Space
                         android:layout_width="0dp"
@@ -211,7 +214,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/check" />
+                        android:src="@drawable/check"
+                        android:contentDescription="@string/listImageLabel" />
 
                     <Space
                         android:layout_width="0dp"
@@ -245,7 +249,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/edit" />
+                        android:src="@drawable/edit"
+                        android:contentDescription="@string/pencilImageDescription" />
 
                     <Space
                         android:layout_width="0dp"
@@ -268,6 +273,7 @@
                 </LinearLayout>
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnEditEditOfficeWorkerFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -277,6 +283,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnDeleteEditOfficeWorkerFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

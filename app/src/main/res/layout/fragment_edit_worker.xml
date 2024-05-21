@@ -88,6 +88,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnEditEditWorkerFragment"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
@@ -98,6 +99,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnDeleteEditWorkerFragment"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"

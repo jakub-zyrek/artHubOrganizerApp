@@ -2,7 +2,6 @@ package com.example.arthuborganizer.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -101,6 +100,8 @@ class CheckFrequencyFragment : Fragment(), RecyclerViewAdapterCalendar.OnClickLi
                 if (mList.size == 0) {
                     binding.noClassCheckFrequencyFragment.visibility = View.VISIBLE
                 }
+
+                mList.sortBy { it.value1 }
 
                 adapter.notifyDataSetChanged()
             }

@@ -123,6 +123,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnDateEditStudent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,6 +132,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnChangeEditStudent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -139,6 +141,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnDeleteEditStudent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -3,197 +3,221 @@
     <string name="start_label">ArtHub\nOrganizer</string>
 
     <!-- Days of week -->
-    <string name="monday">Poniedziałek</string>
-    <string name="tuesday">Wtorek</string>
-    <string name="wendesday">Środa</string>
-    <string name="thursday">Czwartek</string>
-    <string name="friday">Piątek</string>
-    <string name="saturday">Sobota</string>
-    <string name="sundey">Niedziela</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wedesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
 
     <!-- Text -->
-    <string name="loginTitleLabel">Logowanie</string>
-    <string name="registerTitleLabel">Rejestracja</string>
-    <string name="createAdminAccountLabel">Zakładanie konta administratora</string>
-    <string name="helloLabel">"Witaj "</string>
-    <string name="hourLabel">"Godzina: "</string>
-    <string name="dateLabel">"Data: "</string>
-    <string name="accessLabel">Uprawnienia</string>
-    <string name="definitelyLabel">Czy napewno?</string>
-    <string name="clickLabel">Kliknij</string>
+    <string name="loginTitleLabel">Login</string>
+    <string name="registerTitleLabel">Registration</string>
+    <string name="createAdminAccountLabel">Creating an administrator account</string>
+    <string name="helloLabel">"Hello "</string>
+    <string name="hourLabel">"Time: "</string>
+    <string name="dateLabel">"Date: "</string>
+    <string name="accessLabel">Access</string>
+    <string name="definitelyLabel">Are you sure?</string>
+    <string name="clickLabel">Click</string>
 
-    <string name="scanedQRLabel">Zeskanowano kod QR</string>
-    <string name="ticketIsActualLabel">Bilet jest ważny</string>
-    <string name="ticketIsNotActualLabel">Bilet nie jest ważny</string>
-    <string name="ticketLabel">Bilet</string>
+    <string name="scanedQRLabel">QR code scanned</string>
+    <string name="ticketIsActualLabel">The ticket is valid</string>
+    <string name="ticketIsNotActualLabel">The ticket is invalid</string>
+    <string name="ticketLabel">Ticket</string>
     <string name="currencyLabel">" zł"</string>
-    <string name="numberOfTicketsLabel">"Ilość biletów: "</string>
-    <string name="scannedLabel">"Zeskanowano: "</string>
-    <string name="notScannedLabel">Nie zeskanowano</string>
-    <string name="priceLabel">"Cena: "</string>
-    <string name="rowNumberLabel">"Rząd: "</string>
+    <string name="numberOfTicketsLabel">"Number of tickets: "</string>
+    <string name="scannedLabel">"Scanned on: "</string>
+    <string name="notScannedLabel">Not scanned</string>
+    <string name="priceLabel">"Price: "</string>
+    <string name="rowNumberLabel">"Row: "</string>
     <string name="emailInformationLabel">"Email: "</string>
-    <string name="ticketInformationLabel">"Bilet: "</string>
-    <string name="placeNumberLabel">", miejsce: "</string>
+    <string name="ticketInformationLabel">"Ticket: "</string>
+    <string name="placeNumberLabel">", place: "</string>
 
-    <string name="noEventsLabel">Brak wydarzeń w tym dniu</string>
-    <string name="noClassLabel">Brak zajęć w tym dniu</string>
+    <string name="noEventsLabel">No events on this day</string>
+    <string name="noClassLabel">No classes on this day</string>
 
-    <string name="nextClassesLabel">Najbliższe zajęcia:</string>
+    <string name="nextClassesLabel">"The next class: "</string>
 
-    <string name="weekLabel">tydzień</string>
-    <string name="monthLabel">miesiąc</string>
+    <string name="weekLabel">week</string>
+    <string name="monthLabel">month</string>
 
-    <string name="lackOfCultureHouseLabel">Brak przypisanego ośrodka kultury</string>
+    <string name="lackOfCultureHouseLabel">No assigned cultural center</string>
+    <string name="changeTimeLabel">"You change the date of classes: "</string>
 
     <!-- Form labels -->
     <string name="loginLabel">Login</string>
-    <string name="enterLoginLabel">Wprowadź login</string>
+    <string name="enterLoginLabel">Enter login</string>
 
-    <string name="passwordLabel">Hasło</string>
-    <string name="repeatPasswordLabel">Powtórz hasło</string>
-    <string name="enterPasswordLabel">Wprowadź hasło</string>
+    <string name="passwordLabel">Password</string>
+    <string name="repeatPasswordLabel">Repeat password</string>
+    <string name="enterPasswordLabel">Enter password</string>
 
-    <string name="nameLabel">Imię</string>
-    <string name="enterNameLabel">Wprowadź imię</string>
+    <string name="nameLabel">First name</string>
+    <string name="enterNameLabel">Enter first name</string>
 
-    <string name="nameCultureHouseLabel">Nazwa ośrodka kultury</string>
-    <string name="enterNameCultureHouseLabel">Wprowadź nazwę ośrodka kultury</string>
+    <string name="nameCultureHouseLabel">Name of the cultural center</string>
+    <string name="enterNameCultureHouseLabel">Enter name of the cultural center</string>
 
-    <string name="emailLabel">Adres e-mail</string>
-    <string name="enterEmailLabel">Wprowadź adres e-mail</string>
+    <string name="emailLabel">E-mail address</string>
+    <string name="enterEmailLabel">Enter e-mail address</string>
 
-    <string name="surnameLabel">Nazwisko</string>
-    <string name="enterSurnameLabel">Wprowadź nazwisko</string>
+    <string name="surnameLabel">Surname</string>
+    <string name="enterSurnameLabel">Enter surname</string>
 
-    <string name="eventNameLabel">Nazwa</string>
-    <string name="enterEventNameLabel">Wprowadź nazwę</string>
+    <string name="eventNameLabel">Name</string>
+    <string name="enterEventNameLabel">Enter name</string>
 
-    <string name="roomLabel">Sala</string>
+    <string name="roomLabel">Room</string>
 
-    <string name="priceOfTicketLabel">Cena biletu</string>
-    <string name="normalLabel">Normalny</string>
-    <string name="reducedLabel">Ulgowy</string>
+    <string name="priceOfTicketLabel">Ticket price</string>
+    <string name="normalLabel">Regular</string>
+    <string name="reducedLabel">Reduced</string>
 
-    <string name="placesLabel">Miejsca</string>
-    <string name="rowsLabel">Rzędy</string>
-    <string name="placesInRowLabel">Miejsca w rzędzie</string>
+    <string name="placesLabel">Places</string>
+    <string name="rowsLabel">Rows</string>
+    <string name="placesInRowLabel">Places in row</string>
 
-    <string name="dateOfBirthLabel">Data urodzenia</string>
+    <string name="dateOfBirthLabel">Date of birth</string>
 
-    <string name="workerLabel">Prowadzący</string>
-    <string name="periodLabel">Okres trwania zajęć</string>
+    <string name="workerLabel">Leader</string>
+    <string name="periodLabel">Duration of classes</string>
 
-    <string name="periodicityLabel">Częstotliwość</string>
+    <string name="periodicityLabel">Periodicity</string>
 
-    <string name="numberLabel">Ilość</string>
-    <string name="daysLabel">Dni tygodnia</string>
+    <string name="numberLabel">Quantity</string>
+    <string name="daysLabel">Days of the week</string>
 
-    <string name="phoneNumberLabel">Telefon kontakowy</string>
-    <string name="enterPhoneNumberLabel">Wprowadź telefon</string>
+    <string name="phoneNumberLabel">Phone number</string>
+    <string name="enterPhoneNumberLabel">Enter phone number</string>
 
-    <string name="activateLabel">Aktywuj</string>
-    <string name="activateTitleLabel">Aktywacja konta</string>
+    <string name="activateLabel">Activate</string>
+    <string name="activateTitleLabel">Account activation</string>
+
+    <string name="timeLabel">Time:</string>
 
     <!-- Hints -->
-    <string name="periodicityHintLabel">Co ile powtarzają się zajęcia</string>
-    <string name="hintPhoneNumber">Dla uczestników niepełnoletnich: Telefon rodzica (wprowadź bez spacji i numeru kierunkowego)</string>
-    <string name="hintEmail">Dla uczestników niepełnoletnich: Email rodzica</string>
-    <string name="activateAccountHelperText">Jeżeli kiedyś już miałeś/aś konto to zaloguj się za pomocą starego hasła</string>
+    <string name="periodicityHintLabel">How often classes are repeated</string>
+    <string name="hintPhoneNumber">For underage participants: Parent\'s phone number (enter without spaces or area code)</string>
+    <string name="hintEmail">For underage participants: Parent\'s e-mail</string>
+    <string name="activateAccountHelperText">If you already had an account, log in using your old password</string>
 
-    <string name="selectStudentLabel">Wybierz ucznia</string>
-    <string name="DatePickerSelectData">Wybierz datę</string>
-    <string name="TimePickerSelectHour">Wybierz godzinę</string>
+    <string name="selectStudentLabel">Select a student</string>
+    <string name="DatePickerSelectData">Select a date</string>
+    <string name="TimePickerSelectHour">Select an hour</string>
 
     <!-- Buttons -->
-    <string name="signInButtonLabel">Zaloguj się</string>
-    <string name="signUpButtonLabel">Zarejestruj się</string>
-    <string name="addOfficeWorkerButtonLabel">Dodawanie pracownika biura</string>
-    <string name="addWorkerButtonLabel">Dodawanie prowadzącego zajęcia</string>
-    <string name="changeOfficeWorkerButtonLabel">Zarządzanie pracownikami biura</string>
-    <string name="changeWorkerButtonLabel">Zarządzanie prowadzącymi zajęcia</string>
-    <string name="addEventButtonLabel">Dodawanie wydarzenie</string>
-    <string name="changeEventButtonLabel">Zarządzanie wydarzeniami</string>
-    <string name="addClassButtonLabel">Dodawanie zajęcia stałe</string>
-    <string name="changeClassButtonLabel">Zarządzanie zajęciami stałymi</string>
-    <string name="changeCultureHouseButtonLabel">Zarządzanie ośrodkiem kultury</string>
-    <string name="changeStudentsButtonLabel">Zarządzanie uczestnikami zajęć</string>
-    <string name="logOutButtonLabel">Wyloguj się</string>
-    <string name="sellTicketButtonLabel">Sprzedawanie biletów</string>
-    <string name="checkTicketButtonLabel">Sprawdzanie biletów</string>
-    <string name="checkFrequencyButtonLabel">Sprawdź obecność / zobacz plan zajęć</string>
-    <string name="studentsDataButtonLabel">Dane uczestników</string>
-    <string name="addButtonLabel">Dodaj</string>
-    <string name="changeButtonLabel">Zatwierdź</string>
-    <string name="deleteButtonLabel">Usuń</string>
-    <string name="cancelButtonLabel">Anuluj</string>
-    <string name="selectButtonLabel">Wybierz</string>
-    <string name="changeStudentsClassButtonLabel">Zarządzaj uczestnikami zajęć</string>
-    <string name="addTicketToBillButtonLabel">Dodaj bilet do rachunku</string>
-    <string name="sellButtonLabel">Sprzedaj</string>
-    <string name="addNextDayButtonLabel">Dodaj następny dzień</string>
-    <string name="scanButtonLabel">Skanuj kolejne</string>
+    <string name="signInButtonLabel">Sign in</string>
+    <string name="signUpButtonLabel">Sign up</string>
+    <string name="addOfficeWorkerButtonLabel">Adding an office employee</string>
+    <string name="addWorkerButtonLabel">Adding an instructor</string>
+    <string name="changeOfficeWorkerButtonLabel">Management of office employees</string>
+    <string name="addEventButtonLabel">Adding an event</string>
+    <string name="changeEventButtonLabel">Event management</string>
+    <string name="addClassButtonLabel">Adding classes permanently</string>
+    <string name="changeClassButtonLabel">Management of permanent classes</string>
+    <string name="changeCultureHouseButtonLabel">Management of a cultural center</string>
+    <string name="changeStudentsButtonLabel">Managing course participants</string>
+    <string name="logOutButtonLabel">Log out</string>
+    <string name="sellTicketButtonLabel">Selling tickets</string>
+    <string name="checkTicketButtonLabel">Checking tickets</string>
+    <string name="checkFrequencyButtonLabel">Check attendance / see class schedule</string>
+    <string name="studentsDataButtonLabel">Participant data</string>
+    <string name="addButtonLabel">Add</string>
+    <string name="changeButtonLabel">Confirm</string>
+    <string name="deleteButtonLabel">Delete</string>
+    <string name="cancelButtonLabel">Cancel</string>
+    <string name="selectButtonLabel">Select</string>
+    <string name="changeStudentsClassButtonLabel">Manage class participants</string>
+    <string name="addTicketToBillButtonLabel">Add a ticket to the bill</string>
+    <string name="sellButtonLabel">Sell</string>
+    <string name="addNextDayButtonLabel">Add the next day</string>
+    <string name="scanButtonLabel">Scan more</string>
+    <string name="changeWorkerButtonLabel">Managing instructors</string>
 
     <!-- Email values -->
-    <string name="qr_code_pdf">Bilet na wydarzenie</string>
-    <string name="itsYourTicetLabel">Oto twoje bilety</string>
+    <string name="qr_code_pdf">Event ticket</string>
+    <string name="itsYourTicetLabel">Here are your tickets</string>
 
     <!-- NavBar -->
-    <string name="navBarAddChangeRooms">Zarządzaj ośrodkiem (sale)</string>
-    <string name="navBarAddClass">Dodaj zajęcia</string>
-    <string name="navBarAddEvent">Dodaj wydarzenie</string>
-    <string name="navBarAddOfficeWorker">Dodaj pracownika biurowego</string>
-    <string name="navBarAddStudent">Dodaj uczestnika</string>
-    <string name="navBarAddWorker">Dodaj prowadzącego</string>
-    <string name="navBarChangeClasses">Zarządzaj zajęciami</string>
-    <string name="navBarChangeEvents">Zarządzaj wydarzeniami</string>
-    <string name="navBarChangeOfficeWorkers">Zarządzaj pracownikami biura</string>
-    <string name="navNarChangeStrudents">Zarządzaj uczestnikami</string>
-    <string name="navBarChangeWorkers">Zarządzaj pracownikami biura</string>
-    <string name="navBarEditClass">Edytuj zajęcia</string>
-    <string name="navBarEditWorker">Edytuj pracownika</string>
-    <string name="navBarEditStudent">Edytowanie uczestnika</string>
-    <string name="navBarAddStudents">Dodaj uczestników</string>
-    <string name="navBarCheckFrequency">Plan zajęć</string>
-    <string name="navBarFrequency">Sprawdź obecność</string>
-    <string name="navBarStudentsInfo">Dane uczestników</string>
-    <string name="navBarSellTickets">Wybierz wydarzenie</string>
-    <string name="navBarSellTicket">Sprzedaj bilet</string>
-    <string name="navBarTicketControl">Weryfikacja biletu</string>
+    <string name="navBarAddChangeRooms">Manage a cultural center (rooms)</string>
+    <string name="navBarAddClass">Add a class</string>
+    <string name="navBarAddEvent">Add an event</string>
+    <string name="navBarAddOfficeWorker">Add an office employee</string>
+    <string name="navBarAddStudent">Add a participant</string>
+    <string name="navBarAddWorker">Add an instructor</string>
+    <string name="navBarChangeClasses">Manage your classes</string>
+    <string name="navBarChangeEvents">Manage events</string>
+    <string name="navBarChangeOfficeWorkers">Manage office employees</string>
+    <string name="navNarChangeStrudents">Manage participants</string>
+    <string name="navBarChangeWorkers">Manage office employees</string>
+    <string name="navBarEditClass">Edit class</string>
+    <string name="navBarEditWorker">Edit employee</string>
+    <string name="navBarEditStudent">Edit participant</string>
+    <string name="navBarAddStudents">Add participants</string>
+    <string name="navBarCheckFrequency">Schedule</string>
+    <string name="navBarFrequency">Check frequency</string>
+    <string name="navBarStudentsInfo">Participant data</string>
+    <string name="navBarSellTickets">Select an event</string>
+    <string name="navBarSellTicket">Sell a ticket</string>
+    <string name="navBarTicketControl">Ticket verification</string>
+    <string name="navBarOneClass">Change class date</string>
+    <string name="navBarEditEvent">Edit event</string>
 
     <!-- Toast values -->
-    <string name="ToastAddRoom">Pomyślnie dodano salę</string>
-    <string name="ToastError">Błąd</string>
-    <string name="ToastChangeName">Pomyślnie zmieniono nazwę</string>
-    <string name="ToastDeleteRoom">Pomyślnie usunięto salę</string>
-    <string name="ToastNoAccess">Brak uprawnień</string>
-    <string name="ToastFillDetails">Wypełnij dane</string>
-    <string name="ToastAddClass">Dodano zajęcia</string>
-    <string name="ToastAddEvent">Dodano wydarzenie</string>
-    <string name="ToastPasswordNotSame">Hasła nie są takie same</string>
-    <string name="ToastAddWorker">Dodano pracownika</string>
-    <string name="ToastEmailInDatabase">Email jest już w bazie</string>
-    <string name="ToastAddStudent">Dodano uczestnika</string>
-    <string name="ToastEditClass">Zmieniono zajęcia</string>
-    <string name="ToastEditOfficeWorker">Zmieniono pracownika</string>
-    <string name="ToastPassword6CharactersError">Hasło powinno mieć 6 znaków</string>
-    <string name="ToastInvalidPassword">Błędne hasło</string>
-    <string name="ToastEmailNotInDatabase">Brak emaila w bazie</string>
-    <string name="ToastEditEvent">Zmieniono wydarzenie</string>
-    <string name="ToastDeleteEvent">Usunięto wydarzenie</string>
-    <string name="ToastActiveAccount">Aktywowano konto</string>
-    <string name="ToastResetPasswordActivateAccout">Błędne hasło. Musisz podać hasło z którym było zakładane konto. Na maila wysłano link do resetu hasła</string>
-    <string name="ToastDeleteWorker">Usunięto pracownika. Użytkownika dalej może logować się na swoje konto natomiast nie ma już dostępu do ośrodka</string>
-    <string name="ToastDeleteClass">Usunięto zajęcia</string>
-    <string name="ToastDeleteWorkerError">Usuń pracownika ze wszystkich zajęć</string>
-    <string name="ToastChangeStudent">Zmieniono uczestnika</string>
-    <string name="ToastDeleteStudentFromClasses">Usunięto uczestnika ze wszystkich zajęć</string>
-    <string name="ToastDeleteStudentWithout">Usunięto uczestnika (poza imieniem i nazwiskiem)</string>
-    <string name="ToastDeleteStudent">Usunięto uczestnika</string>
-    <string name="ToastChangeFrequency">Zmieniono frekwencje</string>
-    <string name="ToastGoodPhoneNumber">Wprowadź poprawny numer telefonu</string>
-    <string name="ToastAddTicket">Dodano bilet</string>
-    <string name="ToastDelete">Usunięto</string>
-    <string name="ToastSellTicket">Sprzedano bilet</string>
+    <string name="ToastAddRoom">The room has been successfully added</string>
+    <string name="ToastError">Error</string>
+    <string name="ToastChangeName">Name changed successfully</string>
+    <string name="ToastDeleteRoom">The room was successfully deleted</string>
+    <string name="ToastNoAccess">No permissions</string>
+    <string name="ToastFillDetails">Fill in the details</string>
+    <string name="ToastAddClass">Class added</string>
+    <string name="ToastAddEvent">Event added</string>
+    <string name="ToastPasswordNotSame">The passwords are not the same</string>
+    <string name="ToastAddWorker">Employee added</string>
+    <string name="ToastEmailInDatabase">The email is already in the database</string>
+    <string name="ToastAddStudent">Participant added</string>
+    <string name="ToastEditClass">Classes changed</string>
+    <string name="ToastEditOfficeWorker">Employee changed</string>
+    <string name="ToastPassword6CharactersError">The password should be 6 characters long</string>
+    <string name="ToastInvalidPassword">Wrong password</string>
+    <string name="ToastEmailNotInDatabase">No email in the database</string>
+    <string name="ToastEditEvent">Event changed</string>
+    <string name="ToastDeleteEvent">Event deleted</string>
+    <string name="ToastActiveAccount">Account activated</string>
+    <string name="ToastResetPasswordActivateAccout">Wrong password. You must enter the password with which the account was created. A link to reset your password has been sent to your email</string>
+    <string name="ToastDeleteWorker">Employee removed. The user can still log in to his account, but he no longer has access to the facility</string>
+    <string name="ToastDeleteClass">Classes removed</string>
+    <string name="ToastDeleteWorkerError">Remove the employee from all activities</string>
+    <string name="ToastChangeStudent">Participant changed</string>
+    <string name="ToastDeleteStudentFromClasses">The participant was removed from all classes</string>
+    <string name="ToastDeleteStudentWithout">Participant removed (except name and surname)</string>
+    <string name="ToastDeleteStudent">Participant removed</string>
+    <string name="ToastChangeFrequency">Frequency changed</string>
+    <string name="ToastGoodPhoneNumber">Please enter a valid phone number</string>
+    <string name="ToastAddTicket">Ticket added</string>
+    <string name="ToastDelete">Deleted</string>
+    <string name="ToastSellTicket">Ticket sold</string>
+    <string name="ToastDeleteTickets">Reservation deleted</string>
+    <string name="ToastChangeTime">The date has been changed</string>
+    <string name="ToastNoPlaces">No places to event</string>
+
+
+    <!-- Image description -->
+    <string name="calendarItemDescription">Image with x</string>
+    <string name="curtainsImageLabel">curtains</string>
+    <string name="peopleImageLabel">people</string>
+    <string name="priceImageLabel">price</string>
+    <string name="listImageLabel">list</string>
+    <string name="pencilImageDescription">pencil</string>
+    <string name="personAddImageLabel">personAdd</string>
+    <string name="plusImageLabel">plus</string>
+    <string name="buildImageLabel">build</string>
+    <string name="qrImageLabel">QR code</string>
+    <string name="startImageLabel">star</string>
+    <string name="arrowImageLabel">arrow back</string>
+    <string name="closeImageLabel">close</string>
 
 </resources>

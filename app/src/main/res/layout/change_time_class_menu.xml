@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layoutAddDeleteRoomMenu"
     android:layout_width="match_parent"
-    android:visibility="gone"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/layoutChangeTimeClass"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <View
         android:layout_width="match_parent"
@@ -15,56 +15,63 @@
         />
 
     <LinearLayout
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent="0.8"
-        android:layout_height="wrap_content"
         style="@style/menus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8">
 
         <TextView
+            android:id="@+id/tvChangeTimeClass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/eventNameLabel"
-            android:textSize="20sp"
-            />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/enterEventNameLabel" >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNameAddDeleteMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            tools:text="@string/changeTimeLabel"
+            android:textSize="20sp" />
 
         <Button
-android:textColor="@color/white"
+            android:id="@+id/btnDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/dateLabel"
+            android:textColor="@color/white"
+            tools:ignore="TextContrastCheck,VisualLintButtonSize" />
+
+        <Button
+            android:id="@+id/btnTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hourLabel"
+            android:textColor="@color/white"
+            tools:ignore="TextContrastCheck,VisualLintButtonSize" />
+
+        <Button
             android:id="@+id/btnYesAddDeleteMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:backgroundTint="@color/green"
             android:text="@string/changeButtonLabel"
-            android:textSize="17sp" />
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
         <Button
-android:textColor="@color/white"
             android:id="@+id/btnNoAddDeleteMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/deleteButtonLabel"
+            android:backgroundTint="@color/red"
+            android:text="@string/cancelButtonLabel"
+            android:textColor="@color/white"
             android:textSize="17sp"
-            android:backgroundTint="@color/red" />
+            tools:ignore="TextContrastCheck,VisualLintButtonSize" />
 
     </LinearLayout>
 

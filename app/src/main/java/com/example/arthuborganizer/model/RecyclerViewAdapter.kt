@@ -1,9 +1,7 @@
 package com.example.arthuborganizer.model
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.graphics.Typeface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

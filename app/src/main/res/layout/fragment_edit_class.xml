@@ -96,6 +96,7 @@
 
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/changeStudentsEditClassFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -107,6 +108,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/editEditClassFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -117,6 +119,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/deleteEditClassFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

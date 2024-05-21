@@ -1,6 +1,6 @@
-<LinearLayout
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="horizontal"
     android:padding="10dp"
@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="2"
-        android:text="dasd"
+        tools:text="Monday"
         android:textSize="20sp"
         android:layout_marginEnd="2.5dp"
         />
@@ -22,13 +22,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1.5"
-        android:text="dasd"
+        tools:text="14:00"
         android:textSize="20sp"
         android:layout_marginEnd="2.5dp"
         android:layout_marginStart="2.5dp"
         />
 
     <Button
+android:textColor="@color/white"
         android:id="@+id/btnDelete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

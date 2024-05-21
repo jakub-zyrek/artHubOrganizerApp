@@ -101,6 +101,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
+android:textColor="@color/white"
                 android:id="@+id/btnAddTicketSellTicketFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,6 +170,7 @@
     </LinearLayout>
 
     <Button
+android:textColor="@color/white"
         android:id="@+id/btnSellTicket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

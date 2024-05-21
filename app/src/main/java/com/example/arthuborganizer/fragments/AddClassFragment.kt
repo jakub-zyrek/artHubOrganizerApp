@@ -101,7 +101,7 @@ class AddClassFragment : Fragment() {
 
         timePicker()
 
-        val daysOfWeek = arrayOf(getString(R.string.monday), getString(R.string.tuesday), getString(R.string.wendesday), getString(R.string.thursday), getString(R.string.friday), getString(R.string.saturday), getString(R.string.sundey))
+        val daysOfWeek = arrayOf(getString(R.string.monday), getString(R.string.tuesday), getString(R.string.wednesday), getString(R.string.thursday), getString(R.string.friday), getString(R.string.saturday), getString(R.string.sunday))
 
         binding.autoCompleteDaySpinnerClass.setAdapter(ArrayAdapter(requireContext(), R.layout.spinner_item, daysOfWeek))
 
@@ -211,7 +211,7 @@ class AddClassFragment : Fragment() {
         binding.rvAddClassFragment.layoutManager = LinearLayoutManager(context)
 
         mList = mutableListOf()
-        adapter = RecyclerViewClassAdapter(mList, getChildFragmentManager())
+        adapter = RecyclerViewClassAdapter(mList)
         binding.rvAddClassFragment.adapter = adapter
 
     }
@@ -331,8 +331,8 @@ class AddClassFragment : Fragment() {
         }
 
         timePicker.addOnPositiveButtonClickListener {
-            if (timePicker.minute.toString() == "0") {
-                binding.btnHourSpinnerClass.text = timePicker.hour.toString() + ":00"
+            if (timePicker.minute < 10) {
+                binding.btnHourSpinnerClass.text = timePicker.hour.toString() + ":0" + timePicker.minute.toString()
             } else {
                 binding.btnHourSpinnerClass.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
             }

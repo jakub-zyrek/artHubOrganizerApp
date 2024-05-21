@@ -102,6 +102,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnDateAddClassFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -200,6 +201,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnHourSpinnerClass"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -211,6 +213,7 @@
             </LinearLayout>
 
             <Button
+android:textColor="@color/white"
                 android:id="@+id/btnAddDayAddClassFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -227,6 +230,7 @@
                 />
 
             <Button
+android:textColor="@color/white"
                 android:id="@+id/btnAddAddClassFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

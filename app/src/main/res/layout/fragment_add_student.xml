@@ -125,6 +125,7 @@
                 />
 
             <Button
+android:textColor="@color/white"
                 android:id="@+id/btnDateAddStudentFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,6 +134,7 @@
                 />
 
             <Button
+android:textColor="@color/white"
                 android:id="@+id/btnAddAddStudentFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

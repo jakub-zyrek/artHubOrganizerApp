@@ -126,6 +126,7 @@
                     android:layout_height="wrap_content">
 
                     <Button
+android:textColor="@color/white"
                         android:id="@+id/btnDateEditEventFragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -137,6 +138,7 @@
                         />
 
                     <Button
+android:textColor="@color/white"
                         android:id="@+id/btnHourEditEventFragment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -150,6 +152,7 @@
                 </LinearLayout>
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnEditEditEventFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -160,6 +163,7 @@
                     />
 
                 <Button
+android:textColor="@color/white"
                     android:id="@+id/btnDeleteEditEventFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

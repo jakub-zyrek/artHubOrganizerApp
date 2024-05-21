@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingHorizontal="15dp"
     android:gravity="center">
 
@@ -12,8 +13,9 @@
         android:src="@drawable/arrow_back"
         android:layout_weight="2"
         android:paddingVertical="20dp"
+        style="@style/svgColor"
         android:scaleType="fitCenter"
-        />
+        android:contentDescription="@string/arrowImageLabel" />
 
     <Space
         android:layout_width="0dp"
@@ -25,7 +27,7 @@
         android:id="@+id/tvNavBarLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="temp"
+        tools:text="Title"
         android:textSize="17sp"
         android:textAllCaps="true"
         android:textStyle="bold"

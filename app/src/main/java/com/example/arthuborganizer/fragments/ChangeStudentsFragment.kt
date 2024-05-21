@@ -2,7 +2,6 @@ package com.example.arthuborganizer.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,13 +39,13 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
     ): View {
         binding = FragmentChangeStudentsBinding.inflate(inflater, container, false)
 
-        if (sharedViewModel.typeOfClass == "change") {
-            binding.navBar.tvNavBarLabel.text = getString(R.string.navNarChangeStrudents)
-        } else if (sharedViewModel.typeOfClass == "add") {
-            binding.navBar.tvNavBarLabel.text = getString(R.string.navBarAddStudents)
-        } else if (sharedViewModel.typeOfClass == "view") {
-            binding.navBar.tvNavBarLabel.text = getString(R.string.navBarStudentsInfo)
-            binding.btnAddChangeStudentsFragment.visibility = View.GONE
+        when (sharedViewModel.typeOfClass) {
+            "change" -> binding.navBar.tvNavBarLabel.text = getString(R.string.navNarChangeStrudents)
+            "add" -> binding.navBar.tvNavBarLabel.text = getString(R.string.navBarAddStudents)
+            "view" -> {
+                binding.navBar.tvNavBarLabel.text = getString(R.string.navBarStudentsInfo)
+                binding.btnAddChangeStudentsFragment.visibility = View.GONE
+            }
         }
 
         binding.navBar.ivNavBarBack.setOnClickListener { back() }
@@ -104,7 +103,7 @@ class ChangeStudentsFragment : Fragment(), RecyclerViewAdapter.OnClickListener {
                         }
                     }
 
-                    mList.sortWith(compareBy(RecyclerViewItem :: value1))
+                    mList.sortBy { it.value1 }
 
                     adapter.notifyDataSetChanged()
                 } else if (sharedViewModel.typeOfClass == "add") {

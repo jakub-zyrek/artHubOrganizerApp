@@ -1,13 +1,8 @@
 package com.example.arthuborganizer.fragments
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Bitmap
-import android.os.AsyncTask
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,9 +33,10 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
     private lateinit var navControl : NavController
     private lateinit var database : FirebaseDatabase
     private lateinit var adapter : RecyclerViewAdapterTicket
-    private lateinit var refEvents : DatabaseReference
+    private lateinit var refEvent : DatabaseReference
     private lateinit var mList : MutableList<RecyclerViewItemTicket>
     private lateinit var selectedPlace : String
+    private var delete : Boolean = true
     private val sharedViewModel: ViewModelVariables by activityViewModels()
 
     override fun onCreateView(
@@ -51,6 +47,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
 
         binding.navBar.ivNavBarBack.setOnClickListener {
             navControl.navigate(R.id.action_sellTicketFragment_to_sellTicketsFragment)
+            deleteBlock(mList)
         }
 
         binding.navBar.tvNavBarLabel.text = getString(R.string.navBarSellTicket)
@@ -64,7 +61,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
 
         navControl = Navigation.findNavController(view)
         database = FirebaseDatabase.getInstance()
-        refEvents = database.getReference(sharedViewModel.idHouse).child("events").child(sharedViewModel.id)
+        refEvent = database.getReference(sharedViewModel.idHouse).child("events").child(sharedViewModel.id)
 
         binding.rvSellTicket.setHasFixedSize(true)
         binding.rvSellTicket.layoutManager = LinearLayoutManager(context)
@@ -78,7 +75,8 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
 
         numberAndPrice()
 
-        refEvents.addValueEventListener(object : ValueEventListener {
+        refEvent.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.btnAddTicketSellTicketFragment.setOnClickListener {
                     if (binding.autoCompleteSellTicketFragment.text.toString() == "") {
@@ -92,7 +90,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
 
                         binding.autoCompleteSellTicketFragment.text.clear()
 
-                        refEvents.child("buyPlaces").child(selectedPlace).child("email").setValue("block")
+                        refEvent.child("buyPlaces").child(selectedPlace).child("email").setValue("block")
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
                                     Toast.makeText(context, getString(R.string.ToastAddTicket), Toast.LENGTH_SHORT).show()
@@ -110,6 +108,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
                     if (binding.etEmailSellTicketFragment.text!!.isEmpty() || binding.rvSellTicket.size == 0) {
                         Toast.makeText(context, getString(R.string.ToastFillDetails), Toast.LENGTH_SHORT).show()
                     } else {
+                        delete = false
                         val time = snapshot.child("date").value.toString() + " " + snapshot.child("hour").value.toString()
                         val name = snapshot.child("name").value.toString()
                         val recipientEmail = binding.etEmailSellTicketFragment.text.toString().trim().lowercase()
@@ -118,7 +117,12 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
                         val codes : MutableList<String> = mutableListOf()
 
                         for (item in mList) {
-                            val qrContent = CreateQRAndSend().generateRandomString(25)
+                            var qrContent = CreateQRAndSend().generateRandomString(25)
+
+                            while (repeatTicketCode(snapshot, qrContent)) {
+                                qrContent = CreateQRAndSend().generateRandomString(25)
+                            }
+
                             codes.add(qrContent)
                             val qrImageFileName = "qr$number.png"
                             val pdfFileName = "ticket$number.pdf"
@@ -127,8 +131,8 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
                             val type = getString(R.string.ticketLabel) + " " + if (item.reduced) {getString(R.string.reducedLabel).lowercase()} else {getString(R.string.normalLabel).lowercase()}
 
                             val qrBitmap = CreateQRAndSend().generateQRCode(qrContent, 200, 200)
-                            val qrImageFile = CreateQRAndSend().saveBitmapToFile(requireContext(), qrBitmap, qrImageFileName)
-                            CreateQRAndSend().createPDFWithQRCode(requireContext(), qrBitmap, pdfFileName, name, time, place, type)
+                            CreateQRAndSend().saveBitmapToFile(context!!, qrBitmap, qrImageFileName)
+                            CreateQRAndSend().createPDFWithQRCode(context!!, qrBitmap, pdfFileName, name, time, place, type)
 
                             pdfs.add(Pair(File(context?.filesDir, pdfFileName).absolutePath, pdfFileName))
 
@@ -140,7 +144,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
                         val subject = getString(R.string.qr_code_pdf)
                         val body = getString(R.string.qr_code_pdf)
 
-                        createQRAndSend.sendEmailUsingWorkManager(requireContext(), subject, body, recipientEmail, pdfs)
+                        createQRAndSend.sendEmailUsingWorkManager(context!!, subject, body, recipientEmail, pdfs)
 
                         number = 0
                         var success = true
@@ -157,7 +161,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
 
                             number++
 
-                            refEvents.child("buyPlaces").child(item.id).setValue(value)
+                            refEvent.child("buyPlaces").child(item.id).setValue(value)
                                 .addOnCompleteListener {
                                     if (!it.isSuccessful) {
                                         Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
@@ -183,7 +187,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
         val placesId : ArrayList<String> = arrayListOf()
         selectedPlace = "null"
 
-        refEvents.child("buyPlaces").addValueEventListener(object : ValueEventListener {
+        refEvent.child("buyPlaces").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 places.clear()
                 placesId.clear()
@@ -195,7 +199,12 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
                     }
                 }
 
-                binding.autoCompleteSellTicketFragment.setAdapter(ArrayAdapter(requireContext(), R.layout.spinner_item, places))
+                if (places.size == 0 && binding.rvSellTicket.size == 0) {
+                    navControl.navigate(R.id.action_sellTicketFragment_to_sellTicketsFragment)
+                    Toast.makeText(context, getString(R.string.ToastNoPlaces), Toast.LENGTH_SHORT).show()
+                }
+
+                binding.autoCompleteSellTicketFragment.setAdapter(ArrayAdapter(context!!, R.layout.spinner_item, places))
 
                 binding.autoCompleteSellTicketFragment.setOnItemClickListener { _, _, position, _ ->
                     selectedPlace = placesId[position]
@@ -208,9 +217,10 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
         })
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onItemClick(item: RecyclerViewItemTicket) {
         mList.remove(item)
-        refEvents.child("buyPlaces").child(selectedPlace).child("email").removeValue()
+        refEvent.child("buyPlaces").child(selectedPlace).child("email").removeValue()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     Toast.makeText(context, getString(R.string.ToastDelete), Toast.LENGTH_SHORT).show()
@@ -218,6 +228,7 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
                     Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
                 }
             }
+
         adapter.notifyDataSetChanged()
         numberAndPrice()
     }
@@ -227,4 +238,61 @@ class SellTicketFragment : Fragment(), RecyclerViewAdapterTicket.OnClickListener
         binding.tvPriceSellTicketFragment.text = mList.sumOf { it.price?.toDoubleOrNull() ?: 0.0 }.toString()
     }
 
+    private fun repeatTicketCode(snapshot : DataSnapshot, qrContent : String): Boolean {
+        for (ticket in snapshot.child("buyPlaces").children) {
+            if (qrContent == ticket.child("code").value.toString()) {
+                return true
+            }
+        }
+
+        return false
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun deleteBlock(list : MutableList<RecyclerViewItemTicket>) {
+        for (item in list) {
+            refEvent.child("buyPlaces").child(item.id).child("email").removeValue()
+                .addOnCompleteListener {
+                    if (!it.isSuccessful) {
+                        Toast.makeText(context, getString(R.string.ToastError), Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+
+        if (mList.size > 0) {
+            Toast.makeText(context, getString(R.string.ToastDeleteTickets), Toast.LENGTH_SHORT).show()
+        }
+
+        mList.clear()
+        adapter.notifyDataSetChanged()
+        numberAndPrice()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (delete) {
+            deleteBlock(mList)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (delete) {
+            deleteBlock(mList)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (delete) {
+            deleteBlock(mList)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        if (delete) {
+            deleteBlock(mList)
+        }
+    }
 }

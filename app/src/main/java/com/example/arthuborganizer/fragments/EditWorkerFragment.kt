@@ -13,17 +13,12 @@ import androidx.navigation.Navigation
 import com.example.arthuborganizer.R
 import com.example.arthuborganizer.databinding.FragmentEditWorkerBinding
 import com.example.arthuborganizer.model.ViewModelVariables
-import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 class EditWorkerFragment : Fragment() {
     private lateinit var binding : FragmentEditWorkerBinding

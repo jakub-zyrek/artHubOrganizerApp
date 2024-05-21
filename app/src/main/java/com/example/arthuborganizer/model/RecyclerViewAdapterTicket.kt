@@ -1,14 +1,9 @@
 package com.example.arthuborganizer.model
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.Typeface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.arthuborganizer.R
-import com.example.arthuborganizer.databinding.ItemLayoutBinding
 import com.example.arthuborganizer.databinding.TicketItemBinding
 
 class RecyclerViewAdapterTicket(private val list: MutableList<RecyclerViewItemTicket>, private val reduced : String, private val normal : String) : RecyclerView.Adapter<RecyclerViewAdapterTicket.RecyclerViewHolder>() {

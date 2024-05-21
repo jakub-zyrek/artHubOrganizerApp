@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingVertical="10dp"
     android:paddingStart="20dp"
     android:paddingEnd="10dp"
@@ -11,7 +12,7 @@
         android:id="@+id/place"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="1 1"
+        tools:text="1 1"
         android:layout_weight="2"
         android:textStyle="bold"
         />
@@ -20,7 +21,7 @@
         android:id="@+id/type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Normalny"
+        tools:text="Normal"
         android:layout_weight="6"
         />
 
@@ -32,7 +33,7 @@
         android:textAlignment="textEnd"
         android:paddingEnd="3dp"
         android:textStyle="bold"
-        />
+        tools:ignore="RtlSymmetry" />
 
     <ImageView
         android:id="@+id/ivDeleteTicketItem"
@@ -41,6 +42,6 @@
         android:src="@drawable/close"
         android:paddingStart="3dp"
         android:paddingEnd="10dp"
-        />
+        android:contentDescription="@string/closeImageLabel" />
 
 </LinearLayout>
