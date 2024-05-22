@@ -73,7 +73,7 @@ class ChangeStudentsClassFragment : Fragment(), RecyclerViewAdapter.OnClickListe
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 refStudent.child(snapshot.key.toString()).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshotStudent: DataSnapshot) {
-                        val newItem = RecyclerViewItem(snapshot.key.toString(), snapshotStudent.child("name").value.toString(), snapshotStudent.child("surname").value.toString())
+                        val newItem = RecyclerViewItem(snapshot.key.toString(), snapshotStudent.child("surname").value.toString(), snapshotStudent.child("name").value.toString())
 
                         if (!mList.contains(newItem)) {
                             mList.add(newItem)
