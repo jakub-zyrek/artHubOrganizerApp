@@ -62,7 +62,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-android:textColor="@color/white"
+        android:textColor="@color/white"
         android:id="@+id/btnSignInLoginFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,6 +82,7 @@ android:textColor="@color/white"
         android:textColor="@color/primaryColor"
         android:textSize="20sp"
         android:layout_gravity="center"
+        android:textAlignment="center"
         />
 
     <TextView
@@ -94,6 +95,7 @@ android:textColor="@color/white"
         android:textColor="@color/primaryColor"
         android:textSize="20sp"
         android:layout_gravity="center"
+        android:textAlignment="center"
         />
 
     <TextView

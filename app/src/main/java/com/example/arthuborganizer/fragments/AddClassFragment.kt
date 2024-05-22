@@ -139,7 +139,7 @@ class AddClassFragment : Fragment() {
 
                     var valueToAdd = dayOfMonth - firstDateChange.get(Calendar.DAY_OF_WEEK)
 
-                    if (valueToAdd < 0) valueToAdd += 6
+                    if (valueToAdd < 0) valueToAdd += 7
 
                     firstDateChange.add(Calendar.DAY_OF_MONTH, valueToAdd)
 
